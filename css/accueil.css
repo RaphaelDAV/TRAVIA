@@ -1,0 +1,230 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #c6d2e9;
+    color: #333;
+    line-height: 1.6;
+    padding: 20px;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #8F7597;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+    border-radius: 5px;
+}
+
+header figure img {
+    padding-top: 7px;
+    width: 100px;
+
+}
+
+header .right-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+header button {
+    background-color: white;
+    color: #8F7597;
+    padding: 15px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    border-radius: 10px;
+    font-weight: bold;
+    border: none;
+
+}
+
+header button:hover {
+    background-color: #FFC971;
+    color: #31072E;
+}
+
+
+
+header label{
+    font-weight: bold;
+    color: white;
+
+}
+
+header label:hover{
+    font-weight: bold;
+    color: #FFC971;
+}
+
+a {
+    color: #1E90FF;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #FFC971;
+    text-decoration: underline;
+}
+
+
+.burger-menu {
+    position: relative;
+}
+
+.menu-icon {
+    font-size: 2em;
+    cursor: pointer;
+    display: inline-block;
+    margin-right: 20px;
+    color: white;
+}
+
+.menu {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background-color: #FFC971;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.menu li {
+    margin: 0;
+}
+
+.menu li a {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    border-bottom: 1px solid #BFD4FA;
+}
+
+.menu li a:hover {
+    background-color: #BFD4FA;
+}
+
+#menu-toggle {
+    display: none;
+}
+
+#menu-toggle:checked + .menu-icon + .menu {
+    display: block;
+}
+
+section {
+    margin-top: 100px;
+}
+
+article.Points {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 40%;
+    height: 10%;
+    margin: 0 auto;
+    text-align: center;
+
+}
+
+article.Points h2 {
+    font-size: 1.2em;
+}
+
+article.Points h1 {
+    font-size: 0.8em;
+    padding-bottom: 10px;
+}
+
+article.Points input[type="text"],
+article.Points input[type="submit"] {
+    padding: 10px;
+    margin: 10px 0;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+
+}
+
+article.Points input[type="submit"] {
+    margin-top: 20px;
+    background-color: #FFC971;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+article.Points input[type="submit"]:hover {
+    background-color: #8F7597;
+}
+
+
+.choix {
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+}
+
+.choix img {
+    height: auto;
+    margin: 0 auto;
+
+    border-radius: 10%;
+    object-fit: cover;
+}
+
+article.Description{
+    margin-top: 100px;
+    margin-bottom: 75px;
+    padding: 100px;
+    background-color: white;
+    border-radius: 5px;
+}
+
+
+footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    margin-top: 40px;
+    border-radius: 5px;
+}
+
+footer p {
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+
+footer nav ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+footer nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+footer nav ul li a {
+    color: #f4f4f9;
+    text-decoration: none;
+}
+
+footer nav ul li a:hover {
+    text-decoration: underline;
+}
+

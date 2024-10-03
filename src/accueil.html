@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Travia - Accueil</title>
+    <link rel="stylesheet" href="/css/accueil.css">
+</head>
+<body>
+<header>
+    <figure><img src="/assets/header/logo-transparent-svg.svg" alt="Logo"></figure>
+    <div class="right-section">
+        <a href="#"><label>Mes billets</label></a>
+        <button>Connexion</button>
+        <nav class="burger-menu">
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">&#9776;</label>
+            <ul class="menu">
+                <li><a href="#">Accueil</a></li>
+                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+
+    </div>
+</header>
+<section>
+    <div class="choix">
+        <article class="Points">
+            <h1>Choisissez votre point de départ et d'arrivée</h1>
+            <form method="post" action="/scripts/resultat.php">
+                <h2>Départ</h2>
+                <input name="start" placeholder="Ville de départ" >
+                <h2>Arrivée</h2>
+                <input name="end" placeholder="Ville d'arrivée">
+                <input type="submit" name="submit" value="OK">
+            </form>
+        </article>
+        <img src="/assets/accueil/train.jpeg">
+    </div>
+
+    <article class="Description">
+        "Bienvenue sur Travia, votre plateforme dédiée à la réservation de voyages en train. Explorez nos destinations, réservez vos billets en quelques clics et profitez d'une expérience de voyage fluide et confortable. Avec Travia, chaque trajet devient une aventure."
+    </article>
+</section>
+
+
+<footer>
+    <p>&copy; 2024 Travia. Tous droits réservés.</p>
+    <nav>
+        <ul>
+            <li><a href="#">Mentions légales</a></li>
+            <li><a href="#">Confidentialité</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</footer>
+
+</body>
+</html>
