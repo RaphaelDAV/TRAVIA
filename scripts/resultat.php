@@ -9,7 +9,7 @@ if (isset($_POST['submit'])) {
         $start = htmlspecialchars($_POST['start']);
         $end = htmlspecialchars($_POST['end']);
 
-        $insertTravel = $conn->prepare('INSERT INTO travia.travia_trajets(depart,arrivee) VALUES(?, ?)');
+        $insertTravel = $conn->prepare('INSERT INTO travia.travia_journeys(departure,arrival) VALUES(?, ?)');
         $insertTravel->execute([$start, $end]);
 
 
