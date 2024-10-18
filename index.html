@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Travia</title>
+	<link rel="stylesheet" type="text/css" href="css/home.css" />
+	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+	<link href="https://fonts.cdnfonts.com/css/star-wars" rel="stylesheet">
+	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+</head>
+<body>
+<div class="main-screen">
+	<nav>
+		<div class="nav-left">
+			<h2>travia</h2>
+		</div>
+		<div class="nav-center">
+			<ul>
+				<li><a href="">HOME</a></li>
+				<li><span class="separator">|</span></li>
+				<li><a href="">SHIPS</a></li>
+				<li><span class="separator">|</span></li>
+				<li><a href="">PLANETS</a></li>
+				<li><span class="separator">|</span></li>
+				<li><a href="">CONTACT</a></li>
+				<li><span class="separator">|</span></li>
+				<li><a href="">ACCOUNT</a></li>
+			</ul>
+		</div>
+		<div class="nav-right">
+			<a href="#"><button>CART</button></a>
+		</div>
+	</nav>
+
+	<div class="title">
+		<h2>EXPLORE</h2>
+		<h3>THE GALAXY</h3>
+		<a href="#"><button id="buy">BUY A TICKET</button></a>
+		<a href="#"><button id="about">ABOUT US</button></a>
+	</div>
+	<p>“Travel through space in search of unforgettable memories”</p>
+
+	<video id="background-video" muted>
+		<source src="/assets/home/hyperspace_jump_cut_3.mp4" type="video/mp4">
+		Votre navigateur ne supporte pas la lecture vidéo.
+	</video>
+
+	<script type="module" src="/script/space.js"></script>
+	<script type="module" src="/script/hyperspace_jump.js"></script>
+</div>
+
+<section class="route">
+	<div class="content">
+		<div class="destroyer">
+			<img src="assets/home/destroyer.png" alt="Star Destroyer">
+		</div>
+		<div class="form">
+			<h2>Book your interplanetary trip</h2>
+			<form method="POST">
+				<div class="d&a">
+					<input type="text" id="departurePlanet" name="departurePlanet" placeholder="Departure" required>
+					<input type="text" id="arrivalPlanet" name="arrivalPlanet" placeholder="Arrival" required>
+				</div>
+
+				<input type="date" id="date" name="date" placeholder="Date" required>
+
+				<div class="counter">
+					<button type="button" id="decrease">-</button>
+					<input type="number" id="travelers" value="1" min="1" readonly>
+					<button type="button" id="increase">+</button>
+				</div>
+
+				<input type="submit" id="submitButton" value="SUBMIT">
+				<script src="/script/hyperspace_jump.js" ></script>
+			</form>
+		</div>
+	</div>
+
+	<script>
+		document.getElementById('increase').addEventListener('click', function() {
+			var input = document.getElementById('travelers');
+			input.value = parseInt(input.value) + 1;
+		});
+
+		document.getElementById('decrease').addEventListener('click', function() {
+			var input = document.getElementById('travelers');
+			if (input.value > 0) {
+				input.value = parseInt(input.value) - 1;
+			}
+		});
+	</script>
+
+</section>
+
+
+<section id="overview-tutorial">
+	<div class="container">
+		<!-- Overview Section -->
+		<div class="overview">
+			<div class="left-overview">
+				<h2>01</h2>
+				<h3>Overview</h3>
+				<img src="path_to_your_cockpit_image.jpg" alt="Overview Image" class="overview-image">
+			</div>
+
+			<div class="overview-content">
+				<p>Welcome to Travia</p>
+				<p>
+					Explore the galaxy with Travia Tour, your interplanetary travel platform. Whether you're an ordinary traveler or an adventurer, we offer the best routes to explore unique planets and discover new civilizations.
+					Thanks to our advanced search engine, you can easily find routes based on your preferences: duration, price, and compatibility.
+				</p>
+			</div>
+
+		</div>
+
+		<!-- Tutorial Section -->
+		<div class="tutorial">
+
+			<div class="video-tutorial">
+				<h2>Get Guided on Travia</h2>
+				<a href="#"><video src="path_to_your_video_play_image.jpg" alt="Play Tutorial"></a>
+				<p>Tutorial to guide you through using the site</p>
+			</div>
+
+			<div class="right-tutorial">
+				<h2>02</h2>
+				<h3>Tutorial</h3>
+			</div>
+
+		</div>
+	</div>
+</section>
+
+<!-- Famous Ships Section -->
+<section id="famous-ships">
+	<h3>Famous Ships of the Galaxy</h3>
+	<div class="ships-grid">
+		<div class="ship">
+			<img src="/assets/home/faster.png" alt="YT-1300">
+			<p>Faster</p>
+			<p>YT-1300</p>
+			<p>118000000.00 km/h</p>
+		</div>
+		<div class="ship">
+			<img src="/assets/home/capacity.png" alt="VCX-100">
+			<p>Largest Capacity</p>
+			<p>VCX-100</p>
+			<p>5 travelers per ship</p>
+		</div>
+		<div class="ship">
+			<img src="/assets/home/used.png" alt="YT-2400">
+			<p>Most Used</p>
+			<p>YT-2400</p>
+			<p>18054 uses</p>
+		</div>
+	</div>
+	<a href="#" class="view-all-ships">View All Ships</a>
+</section>
+
+</body>
+</html>

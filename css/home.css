@@ -1,0 +1,355 @@
+/*_______________GENERAL_______________*/
+
+body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background: black;
+  overflow-x: hidden;
+  }
+
+  .main-screen {
+    position: relative;
+    height: 100vh; 
+    overflow: hidden;
+    width: 100%;
+}
+
+nav{
+  display: flex;
+  flex-direction: row;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1rem;
+  padding: 30px;
+
+  position: absolute; 
+  z-index: 10; 
+  top: 4%;
+  left: 0; 
+  right: 0; 
+  display: flex; 
+  width: 100%;
+  align-items: center;
+  box-sizing: border-box;
+
+}
+
+.nav-left {
+  flex: 0;
+}
+
+.nav-center {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center; 
+}
+
+.nav-right {
+  flex: 0;
+  display: flex;
+  align-items: center;
+}
+
+
+nav ul {
+  list-style: none; 
+  display: flex; 
+  align-items: center; 
+}
+
+nav li {
+  letter-spacing: 3px;
+}
+
+nav a {
+  color: #fff; 
+}
+
+.separator {
+  color: #fff; 
+  margin: 0 20px; 
+}
+
+nav button {
+  width: 10vw;
+  background-color: rgb(0,0,0,0); 
+  color: #ffffff; 
+  border-radius: 20px; 
+  border-width: 5px;
+  border-color: #ffcc00;
+  padding: 10px 10px; 
+  cursor: pointer; 
+  font-family: 'Josefin Sans', sans-serif; 
+  font-size: 1rem; 
+  transition: background-color 0.3s; 
+}
+
+nav button:hover{
+  background-color: #ffcc00;
+  color: black;
+}
+
+nav a:hover {
+  color: #e6b800; /
+}
+
+nav h2 {
+  color: #ffcc00; 
+  font-family: 'Star wars'; 
+  font-size: 24px; 
+}
+
+
+
+
+
+
+
+/*_______________VIDEO_______________*/
+
+#background-video {
+  display: none;
+  opacity: 0;
+  transition: opacity 1s ease;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+}
+.fade-out {
+  opacity: 0;
+  transition: opacity 1s ease;
+  pointer-events: none;
+}
+/*_______________TITLE_______________*/
+
+
+
+.title {
+  position: absolute;
+  margin-top: 14vw;
+  margin-left: 40%;
+  
+}
+.title h2{
+  font-size: 10vw;
+  font-family: "Bebas Neue", sans-serif;
+  color: white;
+  line-height: 0;
+  
+}
+
+.title h3{
+  margin-top: 10px;
+  font-size: 9vw;
+  font-weight: inherit;
+  font-family: "Bebas Neue", sans-serif;
+  color: rgba(0, 0, 0, 0);
+  -webkit-text-stroke: 0.1vw;
+  -webkit-text-stroke-color: white;
+  line-height: 0;
+  margin-bottom: 11%;
+}
+
+
+#buy:hover, #about:hover{
+  color: #ffcc00;
+  border-color: #ffcc00;
+  background-color: black;
+}
+
+#buy, #about{
+  margin-top: 10px;
+}
+#buy{
+  left: 20px;
+  padding: 5px 4vw;
+  background-color: #ffcc00;
+  color: black;
+  cursor: pointer;
+  font-family: "Bebas Neue", sans-serif; 
+  border: solid;
+  border-color: #ffcc00;
+  font-size: 1.5rem;
+  margin-right: 10px;
+}
+
+#about{
+  left: 20px;
+  padding: 5px 4vw;
+  background-color: rgb(0,0,0,0);
+  color: rgb(255, 255, 255);
+  cursor: pointer;
+  font-family: "Bebas Neue", sans-serif; 
+  border: solid;
+  font-size: 1.5rem;
+}
+
+p{
+  color: white;
+  font-family: 'Josefin Sans', sans-serif; 
+  font-style: italic;
+  position: absolute;
+  margin-top: 45vw;
+  font-size: 1.5vw;
+  text-align: center;
+  left: 0;
+  right: 0;
+}
+
+
+/*_______________FORM_______________*/
+
+.route {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  height: 75vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.destroyer {
+  position: relative;
+  flex: 1;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.destroyer img {
+  width: auto;
+  position: absolute;
+  left: -40%;
+  object-fit: cover;
+}
+
+.form {
+  margin-right: 10%;
+  flex: 1;
+  padding: 20px;
+  max-width: 600px;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  margin-left: 40px;
+  color: #fff;
+  font-family: 'Josefin Sans', sans-serif;
+  z-index: 1;
+}
+
+.form h2 {
+  text-align: center;
+  font-size: 35px;
+  margin-bottom: 20px;
+  font-family: 'Bebas Neue', sans-serif;
+  letter-spacing: 2px;
+}
+
+.form input[type="text"],
+.form input[type="date"]{
+  background-color: #585151;
+  color: white;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.form input[type="date"] {
+  width: 60%;
+  margin-left: 20%;
+}
+
+.form input[type="submit"] {
+  width: 40%;
+  background-color: rgba(0, 0, 0, 0);
+  color: #ffffff;
+  border-radius: 20px;
+  border-width: 5px;
+  border-color: #ffcc00;
+  padding: 10px 10px;
+  cursor: pointer;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+  margin-left: 30%;
+}
+
+.form input[type="submit"]:hover {
+  background-color: #ffcc00;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+
+}
+
+.counter button {
+  width: 50px;
+  height: 50px;
+  background-color: #585151;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 15px;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.form input[type="number"] {
+  background-color: rgb(0,0,0,0);
+  color: white;
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  border: none;
+  font-size: 16px;
+  font-family: 'Josefin Sans', sans-serif;
+  align-items: center;
+  padding-top: 25px;
+}
+
+.counter button:hover {
+  background-color: #e6b800;
+}
+
+.counter input[type="number"] {
+  width: 60px;
+  text-align: center;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.5rem;
+}
+
+
+
+
+
+/*_______________idk_______________*/
+
+
+
+color: #e3c368;
+
