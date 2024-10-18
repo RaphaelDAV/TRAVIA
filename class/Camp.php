@@ -3,23 +3,21 @@
 class Camp
 {
     public function getOrInsertCamp($conn, $campName) {
-        $campName = $conn->real_escape_string($campName);
-
-        $stmt = $conn->prepare("SELECT id_camp FROM travia_camp WHERE camp = ?");
-        $stmt->bind_param("s", $campName);
+        $stmt = $conn->prepare("SELECT id_camp FROM travia_camp WHERE camp = :campName");
+        $stmt->bindParam(':campName', $campName, PDO::PARAM_STR);
         $stmt->execute();
 
-        $result = $stmt->get_result();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if ($result->num_rows > 0) {
-            return $result->fetch_assoc()['id_camp'];
+        if ($result) {
+            return $result['id_camp'];
         } else {
-            $query_insert_camp = "INSERT INTO travia_camp (camp) VALUES (?)";
+            $query_insert_camp = "INSERT INTO travia_camp (camp) VALUES (:campName)";
             $insert_stmt = $conn->prepare($query_insert_camp);
-            $insert_stmt->bind_param("s", $campName);
+            $insert_stmt->bindParam(':campName', $campName, PDO::PARAM_STR);
 
-            if ($insert_stmt->execute() === TRUE) {
-                return $conn->insert_id;
+            if ($insert_stmt->execute()) {
+                return $conn->lastInsertId();
             } else {
                 return null;
             }
@@ -28,4 +26,3 @@ class Camp
 }
 
 ?>
-

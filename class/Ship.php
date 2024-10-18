@@ -23,10 +23,19 @@ class Ship
         $campId = $campObj->getOrInsertCamp($conn, $this->camp);
 
         if ($campId !== null) {
-            $stmt = $conn->prepare("INSERT INTO travia_ship (id_ship, name, speed_kmh, capacity, id_camp) VALUES (?, ?, ?, ?, ?)");
-            $stmt->bind_param("isiii", $this->id_ship, $this->name, $this->speed_kmh, $this->capacity, $campId);
+            $stmt = $conn->prepare("
+                INSERT INTO travia_ship 
+                (id_ship, name, speed_kmh, capacity, id_camp) 
+                VALUES (:id_ship, :name, :speed_kmh, :capacity, :id_camp)
+            ");
+
+            $stmt->bindParam(':id_ship', $this->id_ship, PDO::PARAM_INT);
+            $stmt->bindParam(':name', $this->name, PDO::PARAM_STR);
+            $stmt->bindParam(':speed_kmh', $this->speed_kmh, PDO::PARAM_INT);
+            $stmt->bindParam(':capacity', $this->capacity, PDO::PARAM_INT);
+            $stmt->bindParam(':id_camp', $campId, PDO::PARAM_INT);
+
             $stmt->execute();
-            $stmt->close();
         }
     }
 }
