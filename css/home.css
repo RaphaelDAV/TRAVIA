@@ -349,7 +349,28 @@ p{
 
 /*_______________idk_______________*/
 
+.suggestions, .suggestions2 {
+  border: 1px solid #ccc;
+  max-height: 150px;
+  overflow-y: auto;
+  position: absolute;
+z-index: 1000;
+  display: none;
+}
 
 
-color: #e3c368;
+.suggestions.show, .suggestions2.show {
+  display: block;
+}
+
+
+.suggestion-item {
+  padding: 8px;
+  cursor: pointer;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}
+
 

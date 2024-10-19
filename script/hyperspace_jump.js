@@ -1,4 +1,4 @@
-import './space';
+import "./space.js";
 
 const playButton = document.getElementById('submitButton');
 const video = document.getElementById('background-video');
@@ -27,7 +27,7 @@ video.addEventListener('timeupdate', function() {
         video.style.opacity = 0;
 
         setTimeout(() => {
-            window.location.href = '../src/map.php';
+            window.location.href = '../src/map.html';
         }, 200);
     }
 })

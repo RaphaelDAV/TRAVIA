@@ -1,24 +1,30 @@
 <?php
+// get_planets.php
+$servername = 'localhost';
+$username = 'traviauser';
+$password = '0mMitM!E7VmJo%6S';
+$dbname = 'traviauser';
 
-require 'connexion.php';
-session_start();
+try {
+    // Créer la connexion
+    $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
+    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-//Query to get planets
-$sql = "SELECT name FROM travia_planet";
-$result = $conn->query($sql);
+    // Obtenez le terme de recherche
+    $searchTerm = isset($_GET['term']) ? $_GET['term'] : '';
 
-$planets = [];
+    // Préparez et exécutez la requête
+    $stmt = $conn->prepare("SELECT name FROM travia_planet WHERE name LIKE CONCAT('%', :term, '%')");
+    $stmt->bindParam(':term', $searchTerm, PDO::PARAM_STR);
+    $stmt->execute();
 
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_assoc()) {
-        $planets[] = $row['name'];
-    }
+    // Récupérer les résultats
+    $planets = $stmt->fetchAll(PDO::FETCH_COLUMN);
+
+    // Renvoyer les résultats au format JSON
+    echo json_encode($planets);
+} catch(PDOException $e) {
+    // Gérer l'erreur
+    echo json_encode(["error" => $e->getMessage()]);
 }
-
-//Return
-header('Content-Type: application/json');
-echo json_encode($planets);
-
-$conn->close();
-
 ?>

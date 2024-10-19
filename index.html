@@ -7,8 +7,6 @@
 	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 	<link href="https://fonts.cdnfonts.com/css/star-wars" rel="stylesheet">
-	<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 </head>
 <body>
 <div class="main-screen">
@@ -47,8 +45,8 @@
 		Votre navigateur ne supporte pas la lecture vidéo.
 	</video>
 
-	<script type="module" src="/script/space.js"></script>
-	<script type="module" src="/script/hyperspace_jump.js"></script>
+	<script type="module" src="script/space.js"></script>
+	<script type="module" src="script/hyperspace_jump.js"></script>
 </div>
 
 <section class="route">
@@ -60,9 +58,12 @@
 			<h2>Book your interplanetary trip</h2>
 			<form method="POST">
 				<div class="d&a">
-					<input type="text" id="departurePlanet" name="departurePlanet" placeholder="Departure" required>
-					<input type="text" id="arrivalPlanet" name="arrivalPlanet" placeholder="Arrival" required>
+					<input type="text" id="departurePlanet" name="departurePlanet" placeholder="Departure" autocomplete="off" required>
+					<div class="suggestions" id="suggestions"></div>
+					<input type="text" id="arrivalPlanet" name="arrivalPlanet" placeholder="Arrival" autocomplete="off" required>
+					<div class="suggestions2" id="suggestions2"></div>
 				</div>
+				<script src="/script/autocomplete.js" ></script>
 
 				<input type="date" id="date" name="date" placeholder="Date" required>
 
@@ -71,27 +72,13 @@
 					<input type="number" id="travelers" value="1" min="1" readonly>
 					<button type="button" id="increase">+</button>
 				</div>
+				<script src="/script/travelers_buttons.js" ></script>
 
 				<input type="submit" id="submitButton" value="SUBMIT">
 				<script src="/script/hyperspace_jump.js" ></script>
 			</form>
 		</div>
 	</div>
-
-	<script>
-		document.getElementById('increase').addEventListener('click', function() {
-			var input = document.getElementById('travelers');
-			input.value = parseInt(input.value) + 1;
-		});
-
-		document.getElementById('decrease').addEventListener('click', function() {
-			var input = document.getElementById('travelers');
-			if (input.value > 0) {
-				input.value = parseInt(input.value) - 1;
-			}
-		});
-	</script>
-
 </section>
 
 
@@ -102,7 +89,7 @@
 			<div class="left-overview">
 				<h2>01</h2>
 				<h3>Overview</h3>
-				<img src="path_to_your_cockpit_image.jpg" alt="Overview Image" class="overview-image">
+				<img src="assets/home/background1.png" alt="Overview Image" class="overview-image">
 			</div>
 
 			<div class="overview-content">
@@ -120,7 +107,7 @@
 
 			<div class="video-tutorial">
 				<h2>Get Guided on Travia</h2>
-				<a href="#"><video src="path_to_your_video_play_image.jpg" alt="Play Tutorial"></a>
+				<a href="#"><video src="assets/home/background2.png" alt="Play Tutorial"></a>
 				<p>Tutorial to guide you through using the site</p>
 			</div>
 

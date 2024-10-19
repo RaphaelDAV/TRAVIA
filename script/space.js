@@ -1,5 +1,5 @@
 import * as THREE from 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.module.js';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+import { GLTFLoader } from '../node_modules/.vite/deps/three_addons_loaders_GLTFLoader__js.js';
 
 let scene, camera, renderer, starGeo, stars, falconMesh;
 
