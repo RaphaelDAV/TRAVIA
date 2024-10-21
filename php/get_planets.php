@@ -1,30 +1,32 @@
 <?php
-// get_planets.php
 $servername = 'localhost';
 $username = 'traviauser';
 $password = '0mMitM!E7VmJo%6S';
 $dbname = 'traviauser';
 
 try {
-    // Créer la connexion
-    $conn = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
-    $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Obtenez le terme de recherche
-    $searchTerm = isset($_GET['term']) ? $_GET['term'] : '';
+    $stmt = $pdo->query('SELECT 
+        travia_planet.name, 
+        travia_planet.x, 
+        travia_planet.y, 
+        travia_planet.subgridx, 
+        travia_planet.subgridy, 
+        travia_region.region, 
+        travia_planet.diameter 
+    FROM 
+        travia_planet 
+    JOIN 
+        travia_region 
+    ON 
+    travia_planet.id_region = travia_region.id_region;');
+    $planets = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Préparez et exécutez la requête
-    $stmt = $conn->prepare("SELECT name FROM travia_planet WHERE name LIKE CONCAT('%', :term, '%')");
-    $stmt->bindParam(':term', $searchTerm, PDO::PARAM_STR);
-    $stmt->execute();
-
-    // Récupérer les résultats
-    $planets = $stmt->fetchAll(PDO::FETCH_COLUMN);
-
-    // Renvoyer les résultats au format JSON
     echo json_encode($planets);
-} catch(PDOException $e) {
-    // Gérer l'erreur
-    echo json_encode(["error" => $e->getMessage()]);
+} catch (PDOException $e) {
+    echo 'Erreur : ' . $e->getMessage();
 }
 ?>
+

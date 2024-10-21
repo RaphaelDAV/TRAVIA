@@ -56,7 +56,7 @@
 		</div>
 		<div class="form">
 			<h2>Book your interplanetary trip</h2>
-			<form method="POST">
+			<form method="POST"  action="php/form.php">
 				<div class="d&a">
 					<input type="text" id="departurePlanet" name="departurePlanet" placeholder="Departure" autocomplete="off" required>
 					<div class="suggestions" id="suggestions"></div>
@@ -65,7 +65,7 @@
 				</div>
 				<script src="/script/autocomplete.js" ></script>
 
-				<input type="date" id="date" name="date" placeholder="Date" required>
+				<input type="date" id="date" name="date" placeholder="Date">
 
 				<div class="counter">
 					<button type="button" id="decrease">-</button>
@@ -82,6 +82,8 @@
 </section>
 
 
+
+
 <section id="overview-tutorial">
 	<div class="container">
 		<!-- Overview Section -->
@@ -89,25 +91,25 @@
 			<div class="left-overview">
 				<h2>01</h2>
 				<h3>Overview</h3>
-				<img src="assets/home/background1.png" alt="Overview Image" class="overview-image">
 			</div>
 
 			<div class="overview-content">
-				<p>Welcome to Travia</p>
-				<p>
+				<div class="title_overview">Welcome to Travia</div>
+				<div class="presentation">
 					Explore the galaxy with Travia Tour, your interplanetary travel platform. Whether you're an ordinary traveler or an adventurer, we offer the best routes to explore unique planets and discover new civilizations.
 					Thanks to our advanced search engine, you can easily find routes based on your preferences: duration, price, and compatibility.
-				</p>
+				</div>
 			</div>
 
 		</div>
 
-		<!-- Tutorial Section -->
+		<div class="transition"></div>
+
 		<div class="tutorial">
 
 			<div class="video-tutorial">
 				<h2>Get Guided on Travia</h2>
-				<a href="#"><video src="assets/home/background2.png" alt="Play Tutorial"></a>
+				<a href="#"><video src="" alt="Play Tutorial"></a>
 				<p>Tutorial to guide you through using the site</p>
 			</div>
 
@@ -119,6 +121,8 @@
 		</div>
 	</div>
 </section>
+
+
 
 <!-- Famous Ships Section -->
 <section id="famous-ships">

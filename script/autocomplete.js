@@ -31,7 +31,7 @@ function displaySuggestions2(suggestions) {
         suggestionItem.classList.add('suggestion-item');
         suggestionItem.textContent = suggestion;
         suggestionItem.onclick = () => {
-            document.getElementById('departurePlanet').value = suggestion;
+            document.getElementById('arrivalPlanet').value = suggestion;
             suggestionsContainer.innerHTML = '';
         };
         suggestionsContainer.appendChild(suggestionItem);
@@ -56,7 +56,23 @@ function fetchSuggestions(term, type) {
         .then(data => {
             if (type === 'departure') {
                 displaySuggestions(data);
-            } else if (type === 'arrival') {
+            }
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+}
+
+function fetchSuggestions2(term, type) {
+    fetch(`php/autocomplete.php?term=${term}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok: ' + response.statusText);
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (type === 'arrival') {
                 displaySuggestions2(data);
             }
         })
@@ -83,7 +99,7 @@ document.getElementById('arrivalPlanet').addEventListener('input', function() {
     const suggestionsContainer = document.getElementById('suggestions2');
 
     if (term.length > 2) {
-        fetchSuggestions(term, 'arrival');
+        fetchSuggestions2(term, 'arrival');
     } else {
         suggestionsContainer.innerHTML = '';
     }

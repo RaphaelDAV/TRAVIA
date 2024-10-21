@@ -101,10 +101,6 @@ nav h2 {
 
 
 
-
-
-
-
 /*_______________VIDEO_______________*/
 
 #background-video {
@@ -148,8 +144,7 @@ nav h2 {
   font-weight: inherit;
   font-family: "Bebas Neue", sans-serif;
   color: rgba(0, 0, 0, 0);
-  -webkit-text-stroke: 0.1vw;
-  -webkit-text-stroke-color: white;
+  -webkit-text-stroke: 0.1vw #ffffff;
   line-height: 0;
   margin-bottom: 11%;
 }
@@ -237,6 +232,7 @@ p{
 }
 
 .form {
+
   margin-right: 10%;
   flex: 1;
   padding: 20px;
@@ -251,6 +247,7 @@ p{
 }
 
 .form h2 {
+  font-weight: normal;;
   text-align: center;
   font-size: 35px;
   margin-bottom: 20px;
@@ -260,22 +257,36 @@ p{
 
 .form input[type="text"],
 .form input[type="date"]{
-  background-color: #585151;
+  background: linear-gradient(135deg, #585151, #757474);
   color: white;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 5px;
+
+  padding: 15px;
+
   border: none;
   font-size: 16px;
   font-family: 'Josefin Sans', sans-serif;
 }
 
 .form input[type="date"] {
-  width: 60%;
+  border-radius: 10px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  width: 55%;
   margin-left: 20%;
 }
 
+.form input[type="text"] {
+  width: 94%;
+  margin-top: 5px;
+}
+
+#departurePlanet{
+  border-radius: 10px 10px 0 0;
+}
+
+#arrivalPlanet{
+  border-radius: 0 0 10px 10px;
+}
 .form input[type="submit"] {
   width: 40%;
   background-color: rgba(0, 0, 0, 0);
@@ -306,28 +317,32 @@ p{
 .counter button {
   width: 50px;
   height: 50px;
-  background-color: #585151;
+  background: linear-gradient(135deg, #585151, #757474);
   border: none;
-  border-radius: 5px;
-  padding: 10px 15px;
+  border-radius: 100%;
+  padding: 0px 10px;
   color: white;
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   cursor: pointer;
   transition: background-color 0.3s;
+}
+
+.counter::before,
+.counter::after {
+  content: '';
+  flex: 1;
+  border-top: 5px solid #585151;
+  margin: 0 10px;
 }
 
 .form input[type="number"] {
   background-color: rgb(0,0,0,0);
   color: white;
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border-radius: 5px;
   border: none;
   font-size: 16px;
   font-family: 'Josefin Sans', sans-serif;
   align-items: center;
-  padding-top: 25px;
+  text-align: center;
 }
 
 .counter button:hover {
@@ -343,18 +358,13 @@ p{
   font-size: 1.5rem;
 }
 
-
-
-
-
-/*_______________idk_______________*/
-
 .suggestions, .suggestions2 {
-  border: 1px solid #ccc;
+  width: 29%;
+  background-color: #e6b800;
   max-height: 150px;
   overflow-y: auto;
   position: absolute;
-z-index: 1000;
+  z-index: 1000;
   display: none;
 }
 
@@ -373,4 +383,75 @@ z-index: 1000;
   background-color: #f0f0f0;
 }
 
+/*_______________TRANSITION_______________*/
+.transition {
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+  margin: -20px 0;
+}
+/*_______________OVERVIEW_______________*/
+
+.overview{
+  font-family: 'Josefin Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  height: 40vw;
+}
+
+.left-overview{
+  background-image: url('../assets/home/background1.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 55%;
+}
+.overview-content{
+  background: linear-gradient(135deg, #E7C863, #8B7838);
+  width: 45%;
+}
+
+.title_overview{
+  font-size: 35px;
+  color: white ;
+}
+.presentation{
+  color: white;
+}
+
+/*_______________TUTORIAL_______________*/
+
+.tutorial{
+  font-family: 'Josefin Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #000;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  height: 40vw;
+}
+
+.right-tutorial{
+  background-image: url('../assets/home/background2.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 55%;
+}
+.video-tutorial{
+  background: linear-gradient(135deg, #E7C863, #8B7838);
+  width: 45%;
+}
+
+.title_overview{
+  font-size: 35px;
+  color: white ;
+}
+.presentation{
+  color: white;
+}
 

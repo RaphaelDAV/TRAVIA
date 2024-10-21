@@ -1,0 +1,30 @@
+/*_______________MAP_______________*/
+
+#map {
+    height: 500px;
+    width: 100%;
+    background-color: black;
+}
+.grid-label {
+    font-size: 12px;
+    color:white;
+}
+
+#legend {
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px;
+    border-radius: 5px;
+    margin-left: 20px;
+    width: 25%;
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+.legend-color {
+    width: 20px;
+    height: 20px;
+    border-radius: 3px;
+    margin-right: 5px;
+}
