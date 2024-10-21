@@ -1,48 +1,47 @@
 <?php
 
 class Planet {
-    private int $id_planet;
-    private string $image;
-    private string $name;
-    private string $coord;
-    private int $x;
-    private int $y;
-    private string $subgridcood;
-    private string $subgridx;
-    private string $subgridy;
-    private int $suns;
-    private int $moons;
-    private int $planet_position;
-    private string $distance;
-    private string $lengthday;
-    private string $lengthyear;
-    private string $diameter;
-    private string $gravity;
-    private int $id_region;
-    private int $id_sector;
+    private $id_planet;
+    private $image;
+    private $name;
+    private $coord;
+    private $x;
+    private $y;
+    private $subgridcood;
+    private $subgridx;
+    private $subgridy;
+    private $suns;
+    private $moons;
+    private $planet_position;
+    private $distance;
+    private $lengthday;
+    private $lengthyear;
+    private $diameter;
+    private $gravity;
+    private $id_region;
+    private $id_sector;
 
-    public function __construct(array $data) {
-        $this->id_planet = $data['Id'] ?? 0;
-        $this->image = $data['Image'] ?? '';
-        $this->name = $data['Name'] ?? '';
-        $this->coord = $data['Coord'] ?? '';
-        $this->x = $data['X'] ?? 0;
-        $this->y = $data['Y'] ?? 0;
-        $this->subgridcood = $data['SubGridCoord'] ?? '';
-        $this->subgridx = $data['SubGridX'] ?? '';
-        $this->subgridy = $data['SubGridY'] ?? '';
-        $this->suns = $data['Suns'] ?? 0;
-        $this->moons = $data['Moons'] ?? 0;
-        $this->planet_position = $data['Position'] ?? 0;
-        $this->distance = $data['Distance'] ?? '';
-        $this->lengthday = $data['LengthDay'] ?? '';
-        $this->lengthyear = $data['LengthYear'] ?? '';
-        $this->diameter = $data['Diameter'] ?? '';
-        $this->gravity = $data['Gravity'] ?? '';
-        $this->id_region = 0;
-        $this->id_sector = 0;
+    public function __construct($data) {
+        $this->id_planet = $data['id_planet'];
+        $this->image = $data['image'];
+        $this->name = $data['name'];
+        $this->coord = $data['coord'];
+        $this->x = $data['x'];
+        $this->y = $data['y'];
+        $this->subgridcood = $data['subgridcood'];
+        $this->subgridx = $data['subgridx'];
+        $this->subgridy = $data['subgridy'];
+        $this->suns = $data['suns'];
+        $this->moons = $data['moons'];
+        $this->planet_position = $data['planet_position'];
+        $this->distance = $data['distance'];
+        $this->lengthday = $data['lengthday'];
+        $this->lengthyear = $data['lengthyear'];
+        $this->diameter = $data['diameter'];
+        $this->gravity = $data['gravity'];
+        $this->id_region = $data['id_region'];
+        $this->id_sector = $data['id_sector'];
     }
-
     public function getIdPlanet(): int
     {
         return $this->id_planet;
@@ -265,6 +264,14 @@ class Planet {
 
         return $conn->lastInsertId();
     }
+
+    public function calculateDistance(Planet $otherPlanet): float {
+        $dx = $this->x - $otherPlanet->getX();
+        $dy = $this->y - $otherPlanet->getY();
+
+        return sqrt(pow($dx, 2) + pow($dy, 2));
+    }
+
 
 }
 ?>

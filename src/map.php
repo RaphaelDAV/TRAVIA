@@ -1,3 +1,19 @@
+<?php
+session_start();
+require_once '../class/Planet.php'; // Assurez-vous que le chemin est correct
+
+$departurePlanetData = $_SESSION['departurePlanetData'];
+$arrivalPlanetData = $_SESSION['arrivalPlanetData'];
+
+$departurePlanet = new Planet($departurePlanetData);
+$arrivalPlanet = new Planet($arrivalPlanetData);
+
+
+$distance = $departurePlanet->calculateDistance($arrivalPlanet);
+
+var_dump($distance);
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,19 +25,24 @@
 
 </head>
 <body>
-<?php
-session_start(); // Démarre la session
-?>
+
     <p><strong>Departure Planet:</strong> <?php echo $_SESSION['departurePlanet']; ?></p>
     <p><strong>Arrival Planet:</strong> <?php echo $_SESSION['arrivalPlanet']; ?></p>
     <p><strong>Date:</strong> <?php echo $_SESSION['date']; ?></p>
     <p><strong>Number of Travelers:</strong> <?php echo $_SESSION['travelers']; ?></p>
+
+    <h2>Distance between planets:</h2>
+    <p><?php echo "The distance between " . $_SESSION['departurePlanet'] . " and " . $_SESSION['arrivalPlanet'] . " is " . round($distance, 2) . " 10^18 km."; ?></p>
 
     <h1>Carte Spatiale</h1>
 
     <div class="stars"></div>
     <div id="map"></div>
     <script src="../script/map.js" ></script>
+    <script>
+        var departurePlanet = '<?php echo isset($_SESSION["departurePlanet"]) ? $_SESSION["departurePlanet"] : ""; ?>';
+        var arrivalPlanet = '<?php echo isset($_SESSION["arrivalPlanet"]) ? $_SESSION["arrivalPlanet"] : ""; ?>';
+    </script>
 
     <div id="legend">
         <h4>Légende des Régions</h4>
