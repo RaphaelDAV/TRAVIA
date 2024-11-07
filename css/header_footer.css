@@ -1,0 +1,134 @@
+/*_______________HEADER_______________*/
+
+nav{
+    display: flex;
+    flex-direction: row;
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1vw;
+    padding-right: 30px;
+    padding-left: 30px;
+    position: absolute;
+    z-index: 10;
+    top: 4%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    align-items: center;
+    box-sizing: border-box;
+
+}
+
+.nav-left {
+    flex: 0;
+}
+
+.nav-center {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-right {
+    flex: 0;
+    display: flex;
+    align-items: center;
+}
+
+
+nav ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+nav li {
+    letter-spacing: 3px;
+}
+
+nav a {
+    color: #fff;
+}
+
+.separator {
+    color: #fff;
+    margin: 0 20px;
+}
+
+.cart {
+    width: 10vw;
+    min-width: 70px;
+    background-color: rgb(0,0,0,0);
+    color: #ffffff;
+    border-radius: 20px;
+    border-width: calc(2px + 0.3vw);
+    border-color: #ffcc00;
+    padding: 10px 10px;
+    cursor: pointer;
+    font-family: 'Josefin Sans', sans-serif;
+    font-size: calc(10px+ 1vw);
+    transition: background-color 0.3s;
+}
+
+
+.cart:hover{
+    background-color: #ffcc00;
+    color: black;
+}
+
+nav a:hover {
+    color: #e6b800;
+}
+
+nav h2 {
+    color: #ffcc00;
+    font-family: 'Star wars', serif;
+    font-size: calc(10px + 1vw);
+}
+
+.burger-menu {
+    display: none;
+    font-size: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+@media (max-width: 800px) {
+    .nav-links {
+        font-size: calc(5px + 1vw);
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 50px;
+        right: 20px;
+        background-color: #333;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+
+    .separator {
+        display: none;
+    }
+
+    .burger-menu {
+        margin-left: 10px;
+        display: block;
+        padding: 0 0;
+        color: white;
+    }
+
+    .burger-menu:hover {
+        background-color: rgb( 0, 0 ,0,0%);
+        color: #E7C863;
+    }
+
+    .nav-links.show {
+        display: flex;
+    }
+}
+
+/*_______________FOOTER_______________*/

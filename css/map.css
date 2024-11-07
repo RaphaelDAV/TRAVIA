@@ -1,30 +1,509 @@
+@font-face {
+    font-family: 'Aurebesh';
+    src: url('../assets/font') format('otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    background-color: black;
+    color: white;
+    margin: 0;
+}
+
+/*_______________PLANET_______________*/
+
+.planet-section {
+    display: flex;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    width: 100%;
+    background-image: url("../assets/map/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    align-items: center;
+}
+
+.planet-section h1{
+    font-size: calc(30px + 4vw);
+    font-family: "Bebas Neue", sans-serif;
+    text-transform: uppercase;
+    margin-bottom: 0;
+}
+
+
+
+.main-flex{
+    display: flex;
+    flex-direction: column;
+    width: 35%;
+    margin-left: 5%;
+    gap: 10px;
+    height: 75%;
+}
+
+.flex1{
+    display: flex;
+    flex-direction: row;
+    gap: 5%;
+
+}
+
+.flex2{
+    display: flex;
+    flex-direction: row;
+}
+
+.assets1{
+    width: 70%;
+}
+
+.assets2 {
+    width: 10%;
+}
+
+.assets3 {
+    width: 10%;
+}
+
+.assets4{
+    width: 65%;
+    margin-right: 5%;
+}
+
+.assets5{
+    width: 30%;
+}
+.planet-info{
+    width: 70%;
+    padding: 30px;
+    border: solid white 3px;
+    margin-left: 2%;
+    margin-right: 2%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3vw;
+}
+
+.planet-info p{
+
+    font-family: "Josefin Sans", sans-serif;
+    font-size: calc(10px + 1vw);
+    margin: 2px
+}
+
+.planet-section h2{
+    font-family: "Josefin Sans", sans-serif;
+    font-size: calc(10px + 1vw);
+}
+
+.flex3{
+    font-family: "Josefin Sans", sans-serif;
+    font-size: calc(10px + 0.5vw);
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+}
+
+.round-image {
+    overflow: hidden;
+    border-radius: 50%;
+    width: 80vw;
+    height: 80vw;
+    position: absolute;
+    top: 20px;
+    left: 45vw;
+    background-size: 150%;
+    background-position: center;
+    box-shadow: 0 0 100px rgba(255, 255, 255, 0.7);
+}
+
+
+@media (max-width: 800px) {
+    .planet-section {
+        flex-direction: column;
+    }
+    .main-flex{
+        margin-top: 10vw;
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        margin-left: 10%;
+        gap: 10px;
+        height: 75%;
+    }
+
+    .round-image {
+        border-radius: 50%;
+        position: relative;
+        width: 100vw;
+        height:0 ;
+        padding-bottom: 100%;
+        top: 10%;
+        left: 0;
+        overflow: hidden;
+    }
+}
+/*_______________TRANSITION_______________*/
+.transition {
+    height: 50px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 50%, rgba(0, 0, 0, 0) 100%);
+    margin: -25px 0;
+    z-index: 1;
+    position: relative;
+    width: 100%;
+}
+
+/*_______________Travel information*____________*/
+
+.travel-information{
+    margin: 2%;
+}
+.travel-information h1{
+    font-size: calc(30px + 6vw);
+    font-weight: inherit;
+    font-family: "Bebas Neue", sans-serif;
+    color: rgba(0, 0, 0, 0);
+    -webkit-text-stroke: 0.1vw #ffffff;
+    text-align: center;
+    margin: 2%;
+}
+
+
+.choices-flex{
+    display: flex;
+    flex-direction: row;
+    gap: 3vw;
+}
+.travel-information h3{
+    font-family: "Josefin Sans", sans-serif;
+    font-size: calc(10px + 1vw);
+    text-decoration: underline;
+}
+
+.choices{
+    color: black;
+    margin: 2%;
+    background-color: #E7C863;
+    background-image: url("../assets/map/background.png");
+    padding: 2%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    border-radius: 10px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    align-items: center;
+    box-shadow: 0 0 50px rgb(145, 130, 75)
+}
+.choices p{
+
+    font-family: "Josefin Sans", sans-serif;
+    font-size: calc(10px + 1vw);
+}
+
+.choices h2{
+    font-family: "Josefin Sans", sans-serif;
+    font-size: calc(20px + 2vw);
+    text-transform: uppercase;
+
+}
+
+.choices-flex p{
+    font-family: "Josefin Sans", sans-serif;
+    font-size: calc(10px + 1vw);
+
+}
+
+.distance-flex{
+    display: flex;
+    flex-direction: row;
+    gap: 2vw;
+}
+
+@media (max-width: 800px) {
+    .choices-flex{
+        flex-direction: column;
+    }
+}
+
+
+
 /*_______________MAP_______________*/
 
-#map {
-    height: 500px;
-    width: 100%;
-    background-color: black;
+.map-section{
+    display: flex;
+    flex-direction: row;
+    margin: 2%;
 }
-.grid-label {
-    font-size: 12px;
-    color:white;
+#map {
+    height: 800px;
+    width: 50%;
+    background-color: transparent;
+    background-image: radial-gradient(circle at center, rgba(0, 153, 255, 0.4), transparent 75%);
 }
 
-#legend {
-    background: rgba(255, 255, 255, 0.8);
-    padding: 10px;
-    border-radius: 5px;
-    margin-left: 20px;
-    width: 25%;
+
+
+.grid-label {
+    font-size: 12px;
+    color: rgba(0, 255, 255, 0.8);
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+    font-family: 'Orbitron', sans-serif;
+    animation: flicker 3s infinite alternate;
 }
+
+@keyframes flicker {
+    0%, 100% { opacity: 0.95; }
+    50% { opacity: 1; }
+}
+
+.hologram-marker {
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.4);
+    color: rgb(2, 13, 21);
+    font-family: 'Orbitron', sans-serif;
+}
+
+.hologram-line {
+    stroke: rgba(0, 255, 255, 0.5);
+    stroke-width: 1;
+    filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.8));
+}
+
+
+
+.leaflet-popup-content, .leaflet-popup-tip {
+    color: rgb(2, 13, 21);
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
+    font-family: 'Orbitron', sans-serif;
+}
+
+/*_______________LEGEND_______________*/
+
+#legend {
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: calc(5px + 0.5vw);
+
+}
+
+#legend h4 {
+    font-family: "Josefin Sans", sans-serif;
+    text-transform: uppercase;
+    text-decoration: underline;
+    text-decoration-color: #333;
+    margin-bottom: 15px;
+    font-size: calc(20px + 1vw);
+    color: #333;
+}
+
 .legend-item {
+    font-family: "Josefin Sans", sans-serif;
     display: flex;
     align-items: center;
-    margin-bottom: 5px;
+    font-size: calc(5px + 1vw);
+    margin-left: 2vw;
 }
+
 .legend-color {
     width: 20px;
     height: 20px;
+    margin-right: 10px;
     border-radius: 3px;
-    margin-right: 5px;
+}
+
+.legend-item:last-child {
+    margin-bottom: 0;
+}
+
+
+.r2d2 {
+    position: absolute;
+    right: 0;
+    max-height: 800px;
+    height: 60%;
+    margin-top: 5%;
+}
+
+@media (max-width: 800px) {
+    .r2d2{
+        display: none;
+    }
+}
+
+/*_______________TICKETS_______________*/
+@font-face {
+    font-family: Aurebesh;
+    src: url("../assets/font/Aurabesh/Aurebesh.otf") format("opentype");
+}
+
+.tickets{
+    display: flex;
+    flex-direction: row;
+    height: 90%;
+    margin: 2%;
+    max-height: 900px;
+    gap: 50px;
+}
+
+.tickets-left{
+    background-color: black;
+    overflow:scroll;
+    width: 100%;
+}
+
+.tickets-right{
+    width: 26%;
+}
+
+.ticket{
+    background-image: url("../assets/map/ticket.png");
+    background-size: cover;
+    width: 50vw;
+    height: 22.5vw;
+    max-height: none;
+    background-repeat: no-repeat;
+    margin-left: 15%;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 30px;
+}
+
+.ticket img{
+    border: solid white 0.2vw;
+    height: 9vw;
+    width: 13vw;
+    padding: 1vw;
+}
+
+.ticket-flex1{
+    margin-left: 0.7vw;
+    width: 9vw;
+}
+
+.ticket-flex1 img{
+    border: none;
+    width: 6vw;
+    height: 6vw;
+    margin-top: 9vw;
+}
+
+.ticket-flex2{
+    font-family: Aurebesh, serif;
+    font-size: calc(1vw);
+    margin-top: 0.7vw;
+    line-height: 1.1;
+}
+
+.ticket-flex2 p{
+    margin-left: 0.7vw;
+}
+
+.ticket-flex2 p:first-child{
+    margin-top: 5vw;
+}
+
+.ticket-flex3{
+    margin-top: 0.7vw;
+    margin-left: 0.7vw;
+    width: 23vw;
+    font-family: "Josefin Sans", sans-serif;
+}
+.ticket-flex4{
+    border: solid white 0.2vw;
+    padding: 0 0.7vw 0 0.7vw;
+    max-width: 450px;
+    line-height: 0.2;
+}
+
+.ticket-flex4 p{
+    font-family: Aurebesh, serif;
+    font-size: 1.3vw;
+    line-height: 0.2;
+}
+
+.ticket-flex4 h2{
+    font-size: 1.5vw;
+    line-height: 0.2;
+}
+
+.ticket-flex5{
+    border: solid white 0.2vw;
+    margin-top: 0.7vw;
+    width: 17vw;
+    line-height: 0.2;
+    font-size: 1.1vw;
+}
+
+.ticket-flex5 p{
+    margin-left: 0.7vw;
+}
+
+.ticket-flex5 h3{
+    margin-left: 0.7vw;
+    font-family: Aurebesh, serif;
+}
+/*_______________SLIDE_______________*/
+
+.splide {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.splide h1{
+    font-family: "Bebas Neue", sans-serif;
+    font-size: calc(15px + 1vw);
+}
+
+.splide__track {
+    height: 100%; /* Assure que la piste prend toute la hauteur */
+}
+
+.splide__list {
+    height: 100%; /* Assure que la liste prend toute la hauteur */
+}
+
+.splide__slide {
+    height: 100%; /* Prend toute la hauteur de la piste */
+    position: relative;
+}
+
+.splide__slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Remplit la zone sans distorsion */
+}
+
+.slide-content {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 15px;
+    color: white;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background-color: #0056b3;
 }

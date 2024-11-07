@@ -38,6 +38,88 @@ class Ship
             $stmt->execute();
         }
     }
+
+    /**
+     * @return mixed
+     */
+    public function getIdShip()
+    {
+        return $this->id_ship;
+    }
+
+    /**
+     * @param mixed $id_ship
+     */
+    public function setIdShip($id_ship): void
+    {
+        $this->id_ship = $id_ship;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * @param mixed $name
+     */
+    public function setName($name): void
+    {
+        $this->name = $name;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCamp()
+    {
+        return $this->camp;
+    }
+
+    /**
+     * @param mixed $camp
+     */
+    public function setCamp($camp): void
+    {
+        $this->camp = $camp;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getSpeedKmh()
+    {
+        return $this->speed_kmh;
+    }
+
+    /**
+     * @param mixed $speed_kmh
+     */
+    public function setSpeedKmh($speed_kmh): void
+    {
+        $this->speed_kmh = $speed_kmh;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCapacity()
+    {
+        return $this->capacity;
+    }
+
+    /**
+     * @param mixed $capacity
+     */
+    public function setCapacity($capacity): void
+    {
+        $this->capacity = $capacity;
+    }
+
+
 }
 
 ?>

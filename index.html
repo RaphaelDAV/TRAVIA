@@ -4,33 +4,26 @@
 	<meta charset="utf-8">
 	<title>Travia</title>
 	<link rel="stylesheet" type="text/css" href="css/home.css" />
+	<link rel="stylesheet" type="text/css" href="css/header_footer.css" />
 	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 	<link href="https://fonts.cdnfonts.com/css/star-wars" rel="stylesheet">
 </head>
 <body>
 <div class="main-screen">
-	<nav>
-		<div class="nav-left">
-			<h2>travia</h2>
-		</div>
-		<div class="nav-center">
-			<ul>
-				<li><a href="">HOME</a></li>
-				<li><span class="separator">|</span></li>
-				<li><a href="">SHIPS</a></li>
-				<li><span class="separator">|</span></li>
-				<li><a href="">PLANETS</a></li>
-				<li><span class="separator">|</span></li>
-				<li><a href="">CONTACT</a></li>
-				<li><span class="separator">|</span></li>
-				<li><a href="">ACCOUNT</a></li>
-			</ul>
-		</div>
-		<div class="nav-right">
-			<a href="#"><button>CART</button></a>
-		</div>
-	</nav>
+
+	<!-- Include header with JS-->
+	<div id="header-container"></div>
+	<script>
+		fetch('./src/header.html')
+				.then(response => response.text())
+				.then(data => {
+					document.getElementById('header-container').innerHTML = data;
+				})
+				.catch(error => {
+					console.error('Erreur lors du chargement du header:', error);
+				});
+	</script>
 
 	<div class="title">
 		<h2>EXPLORE</h2>
@@ -106,23 +99,28 @@
 	});
 </script>
 
-
+<div class="transition"></div>
 
 <section id="overview-tutorial">
 	<div class="container">
 		<!-- Overview Section -->
 		<div class="overview">
 			<div class="left-overview">
-				<h2>01</h2>
-				<h3>Overview</h3>
+				<span class="number">
+					<h2>01</h2>
+					<div class="line"></div>
+				</span>
+
+				<h3>OVER-<br>VIEW</h3>
 			</div>
 
 			<div class="overview-content">
-				<div class="title_overview">Welcome to Travia</div>
+				<div class="title_overview">WELCOME TO TRAVIA</div>
 				<div class="presentation">
-					Explore the galaxy with Travia Tour, your interplanetary travel platform. Whether you're an ordinary traveler or an adventurer, we offer the best routes to explore unique planets and discover new civilizations.
-					Thanks to our advanced search engine, you can easily find routes based on your preferences: duration, price, and compatibility.
+					EXPLORE THE GALAXY WITH TRAVIA TOUR, YOUR INTERPLANETARY TRAVEL PLATFORM. WHETHER YOU'RE AN ORDINARY TRAVELER OR AN ADVENTURER, WE OFFER THE BEST ROUTES TO EXPLORE UNIQUE PLANETS AND DISCOVER NEW CIVILIZATIONS.
+					<br> <br>THANKS TO OUR ADVANCED SEARCH ENGINE, YOU CAN EASILY FIND ROUTES BASED ON YOUR PREFERENCES: DURATION, PRICE, AND COMPATIBILITY.
 				</div>
+				<hr>
 			</div>
 
 		</div>
@@ -132,43 +130,54 @@
 		<div class="tutorial">
 
 			<div class="video-tutorial">
-				<h2>Get Guided on Travia</h2>
-				<a href="#"><video src="" alt="Play Tutorial"></a>
-				<p>Tutorial to guide you through using the site</p>
+				<h2>BE GUIDED ON TRAVIA</h2>
+				<video src="assets/home/hyperspace_jump.mp4" controls alt="Play Tutorial"></video>
+				<div class="tutorial-text">TUTORIAL FOR USING THE SITE TO GET STARTED</div>
+				<hr>
 			</div>
 
 			<div class="right-tutorial">
+			<span class="number">
 				<h2>02</h2>
-				<h3>Tutorial</h3>
+				<div class="line"></div>
+			</span>
+				<h3>TUTO-<br>RIAL</h3>
 			</div>
 
 		</div>
 	</div>
 </section>
 
-
+<div class="transition"></div>
 
 <!-- Famous Ships Section -->
 <section id="famous-ships">
 	<h3>Famous Ships of the Galaxy</h3>
+	<hr>
 	<div class="ships-grid">
 		<div class="ship">
-			<img src="/assets/home/faster.png" alt="YT-1300">
-			<p>Faster</p>
+			<div class="background-ship">
+				<img src="/assets/home/faster.png" alt="YT-1300">
+			</div>
+			<div class="entitle">FASTER</div>
 			<p>YT-1300</p>
-			<p>118000000.00 km/h</p>
+			<div class="stats">118000000.00 km/h</div>
 		</div>
 		<div class="ship">
+			<div class="background-ship">
 			<img src="/assets/home/capacity.png" alt="VCX-100">
-			<p>Largest Capacity</p>
+			</div>
+			<div class="entitle">LARGEST CAPACITY</div>
 			<p>VCX-100</p>
-			<p>5 travelers per ship</p>
+			<div class="stats">5 travelers per ship</div>
 		</div>
 		<div class="ship">
+			<div class="background-ship">
 			<img src="/assets/home/used.png" alt="YT-2400">
-			<p>Most Used</p>
+			</div>
+			<div class="entitle">MOST USED</div>
 			<p>YT-2400</p>
-			<p>18054 uses</p>
+			<div class="stats">18054 uses</div>
 		</div>
 	</div>
 	<a href="#" class="view-all-ships">View All Ships</a>

@@ -7,7 +7,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $date = htmlspecialchars($_POST['date']);
     $travelers = htmlspecialchars($_POST['travelers']);
 
-    // Connexion à la base de données
+    // Database connection parameters
     $servername = 'localhost';
     $username = 'traviauser';
     $password = '0mMitM!E7VmJo%6S';
@@ -17,23 +17,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-        // Récupérer les informations de la planète de départ
+        // Get information about departure planet
         $stmt = $pdo->prepare("SELECT * FROM travia_planet WHERE name = :planet");
         $stmt->execute(['planet' => $departurePlanet]);
         $departurePlanetData = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Récupérer les informations de la planète d'arrivée
+        // Get information about arrival planet
         $stmt->execute(['planet' => $arrivalPlanet]);
         $arrivalPlanetData = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($departurePlanetData && $arrivalPlanetData) {
-            // Stocker les données des planètes et les autres informations dans la session
+            // Stocking information send with form
             $_SESSION['departurePlanet'] = $departurePlanet;
             $_SESSION['arrivalPlanet'] = $arrivalPlanet;
             $_SESSION['date'] = $date;
             $_SESSION['travelers'] = $travelers;
 
-            // Stocker les données des planètes (coordonnées, etc.)
+            // Stocking data information about the planets
             $_SESSION['departurePlanetData'] = $departurePlanetData;
             $_SESSION['arrivalPlanetData'] = $arrivalPlanetData;
 

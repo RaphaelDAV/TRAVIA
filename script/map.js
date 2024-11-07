@@ -10,48 +10,52 @@
 //____________________________COLORS___________________________________
 
     function getRegionColor(region) {
-    switch(region) {
-    case 'Colonies': return '#FFEB3B';
-    case 'Core': return '#FFC107';
-    case 'Deep Core': return '#FF9800';
-    case 'Expansion Region': return '#FF5722';
-    case 'Extragalactic': return '#FF3D00';
-    case 'Hutt Space': return '#F44336';
-    case 'Inner Rim Territories': return '#FF5722';
-    case 'Mid Rim Territories': return '#2196F3';
-    case 'Outer Rim Territories': return '#3F51B5';
-    case 'Talcene Sector': return '#FF9800';
-    case 'The Centrality': return '#1976D2';
-    case 'Tingel Arm': return '#0D47A1';
-    case 'Wild Space': return '#001F3F';
-    default: return '#001F3F';
-}
-}
+        switch(region) {
+            case 'Colonies': return 'rgba(0, 255, 255, 0.4)';
+            case 'Core': return 'rgba(0, 229, 255, 0.4)';
+            case 'Deep Core': return 'rgba(0, 204, 255, 0.4)';
+            case 'Expansion Region': return 'rgba(0, 178, 255, 0.4)';
+            case 'Extragalactic': return 'rgba(0, 153, 255, 0.4)';
+            case 'Hutt Space': return 'rgba(0, 127, 255, 0.4)';
+            case 'Inner Rim Territories': return 'rgba(0, 102, 255, 0.4)';
+            case 'Mid Rim Territories': return 'rgba(0, 76, 255, 0.4)';
+            case 'Outer Rim Territories': return 'rgba(0, 51, 255, 0.4)';
+            case 'Talcene Sector': return 'rgba(0, 26, 255, 0.4)';
+            case 'The Centrality': return 'rgba(0, 0, 255, 0.4)';
+            case 'Tingel Arm': return 'rgba(0, 0, 229, 0.4)';
+            case 'Wild Space': return 'rgba(0, 0, 204, 0.4)';
+            default: return 'rgba(0, 0, 153, 0.4)';
+        }
+    }
+
+
+
 
     var bounds = [[0, 0], [110, 110]];
     map.setView([50, 50], 1);
 
     L.control.scale({
-    position: 'bottomright',
-    maxWidth: 200,
-    metric: true,
-    imperial: false
-}).addTo(map);
+        position: 'bottomright',
+        maxWidth: 200,
+        metric: true,
+        imperial: false
+    }).addTo(map);
 
 //____________________________GRID___________________________________
 
     function drawGrid() {
-    var step = 2;
+    var step = 5;
 
-    for (var i = 0; i <= 110; i += step) {
-    L.polyline([[0, i], [110, i]], { color: 'gray', weight: 1, opacity: 0.5 }).addTo(map);
-    L.polyline([[i, 0], [i, 110]], { color: 'gray', weight: 1, opacity: 0.5 }).addTo(map);
+        for (var i = 0; i <= 100; i += step) {
+            L.polyline([[0, i], [100, i]], { color: 'rgba(0, 153, 255, 0.3)', weight: 1, opacity: 0.8 }).addTo(map); // Horizontal
+            L.polyline([[i, 0], [i, 100]], { color: 'rgba(0, 153, 255, 0.3)', weight: 1, opacity: 0.8 }).addTo(map); // Vertical
 
-    if (i % 10 === 0) {
-    L.marker([i, -2], { icon: L.divIcon({ className: 'grid-label', html: i.toString() }) }).addTo(map); // Etiquettes de lignes
-    L.marker([-2, i], { icon: L.divIcon({ className: 'grid-label', html: i.toString() }) }).addTo(map); // Etiquettes de colonnes
-}
-}
+            if (i % 10 === 0) {
+                L.marker([i, -2], { icon: L.divIcon({ className: 'grid-label', html: i.toString() }) }).addTo(map);
+                L.marker([-2, i], { icon: L.divIcon({ className: 'grid-label', html: i.toString() }) }).addTo(map);
+            }
+        }
+
 }
 
     drawGrid();
@@ -101,7 +105,7 @@
         if (line) {
             map.removeLayer(line);
         }
-        line = L.polyline([start, end], { color: 'green', weight: 5 }).addTo(map);
+        line = L.polyline([start, end], { color: 'yellow', weight: 5 }).addTo(map);
     }
 
 
@@ -120,7 +124,7 @@
                 var subgridy = parseFloat(planet.subgridy);
 
                 var positionX = (x + subgridx) * 5;
-                var positionY = (y + subgridy) * 5;
+                var positionY = (y + subgridy) * 5 - 5;
 
                 var position = xy(positionX, positionY);
 
@@ -136,11 +140,6 @@
                     .addTo(map)
                     .bindPopup(`${planet.name} (Diamètre: ${diameter} km)`);
 
-                marker.on('click', function() {
-                    selectPlanet(planet, position);
-                });
-
-                // Use the JavaScript variables instead of PHP code
                 if (planet.name === departurePlanet) {
                     departurePlanetPos = position;
                     selectPlanet(planet, position);
