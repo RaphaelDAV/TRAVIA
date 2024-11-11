@@ -351,12 +351,21 @@ body{
     margin: 2%;
     max-height: 900px;
     gap: 50px;
+    position: relative;
 }
 
 .tickets-left{
     background-color: black;
-    overflow:scroll;
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+    overflow-y: scroll;
+    overflow-x: hidden;
     width: 100%;
+    height: 100vh;
+    box-sizing: border-box;
+}
+
+.ticket:first-child{
+    margin-top: 50px;
 }
 
 .tickets-right{
@@ -364,6 +373,7 @@ body{
 }
 
 .ticket{
+    position: relative;
     background-image: url("../assets/map/ticket.png");
     background-size: cover;
     width: 50vw;
@@ -374,7 +384,52 @@ body{
     display: flex;
     flex-direction: row;
     margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
+
+.ticket:hover {
+    transform: scale(1.05);
+    filter: brightness(0.7);
+}
+
+.ticket:hover .cart-button {
+    opacity: 1;
+}
+
+.cart-button {
+    font-family: "Font Awesome 5 Free", serif;
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffd600;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    cursor: pointer;
+    filter: brightness(1);
+}
+
+.cart-button:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.cart-button::before {
+    content: "\f07a";
+    font-family: "Font Awesome 5 Free", serif;
+    font-weight: 1500;
+    color: black;
+    font-size: 2rem;
+}
+
+
 
 .ticket img{
     border: solid white 0.2vw;
@@ -386,6 +441,7 @@ body{
 .ticket-flex1{
     margin-left: 0.7vw;
     width: 9vw;
+    overflow: visible;
 }
 
 .ticket-flex1 img{
@@ -395,6 +451,24 @@ body{
     margin-top: 9vw;
 }
 
+.ticket-flex1 p{
+    margin-left: 4.5vw;
+    font-family: "Bebas Neue", sans-serif ;
+    font-size: 1.5vw;
+    line-height: 0.1;
+}
+
+.credits{
+    display: flex;
+    flex-direction: row;
+}
+
+.credits img{
+    border: none;
+    width: 1.2vw;
+    height: 1.2vw;
+    margin-top: -0.3vw;
+}
 .ticket-flex2{
     font-family: Aurebesh, serif;
     font-size: calc(1vw);

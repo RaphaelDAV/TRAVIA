@@ -132,3 +132,20 @@ nav h2 {
 }
 
 /*_______________FOOTER_______________*/
+
+/*_______________SCROLL_______________*/
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    background: #1e1e1e;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #E7C863;
+    border-radius: 10px;
+    transition: height 0.2s ease-out;
+}
+

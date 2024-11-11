@@ -38,11 +38,15 @@ if (isset($_SESSION['shipCosts'])) {
 <head>
     <meta charset="UTF-8">
     <title>Map</title>
-    <link rel="stylesheet" type="text/css" href="../css/header_footer.css" />
     <link rel="stylesheet" type="text/css" href="../css/map.css" />
+    <link rel="stylesheet" type="text/css" href="../css/header_footer.css" />
+
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/star-wars" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+
+
 
     <!--  CSS of Leaflet.js -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
@@ -69,7 +73,7 @@ if (isset($_SESSION['shipCosts'])) {
             });
     </script>
     <!--_______________________________ PLANET INFORMATION _______________________________-->
-    <section class="planet-section">
+    <div class="planet-section">
         <div class="main-flex">
             <h1><?php echo $_SESSION['arrivalPlanet']; ?></h1>
             <img class="assets1" src="../assets/map/assets1.png" alt="assets1">
@@ -106,7 +110,7 @@ if (isset($_SESSION['shipCosts'])) {
         </div>
         <div class="round-image" style="background-image: url(<?php echo $imagePath; ?>)"></div>
 
-    </section>
+    </div>
 
     <div class="transition"></div>
 
@@ -191,12 +195,18 @@ if (isset($_SESSION['shipCosts'])) {
                         }
                         ?>
 
-                        <img src="<?php echo $imagePath; ?>" alt="Image du camp" ">
-                        <p><strong></strong> <?php echo round($ship['base_cost'] * (1 + ($ship['speed_kmh'] / LIGHT_SPEED)), 2); ?> galactic credits</p>
+                        <img src="<?php echo $imagePath; ?>" alt="camp" ">
+                        <div class="credits">
+                            <p><?php
+                                $unit_price = round($ship['base_cost'] * (1 + ($ship['speed_kmh'] / LIGHT_SPEED)), 2);
+                                echo $unit_price ?>
+                            </p>
+                            <img src="../assets/map/credits.png" alt="credits">
+                        </div>
                     </div>
                     <div class="ticket-flex2">
 
-                        <img src="../assets/map/<?php echo htmlspecialchars($ship['name']); ?>.png">
+                        <img src="../assets/map/<?php echo htmlspecialchars($ship['name']); ?>.png" alt="spaceship">
                         <p>Tickets for the <br>Planetary <br>Trips</p>
                     </div>
                     <div class="ticket-flex3">
@@ -209,13 +219,24 @@ if (isset($_SESSION['shipCosts'])) {
                             <p><?php echo htmlspecialchars($ship['speed_kmh']); ?> km/h</p>
                             <p><strong>Capacity:</strong> <?php echo htmlspecialchars($ship['capacity']); ?></p>
                         </div>
-
-
                     </div>
 
+                    <form class="form_cart" action="../php/add_to_cart.php" method="POST">
+                        <input type="hidden" name="unit_price" value="<?php echo htmlspecialchars($unit_price); ?>">
+                        <input type="hidden" name="id_ship" value="<?php echo htmlspecialchars($ship['id_ship']); ?>">
+                        <input type="hidden" name="departure_planet" value="<?php echo htmlspecialchars($arrivalPlanet->getIdPlanet()); ?>">
+                        <input type="hidden" name="arrival_planet" value="<?php echo htmlspecialchars($departurePlanet->getIdPlanet()); ?>">
+                        <button class="cart-button" onclick="addToCart()" type="submit"></button>
+                    </form>
+                    <script>
+                        function addToCart() {
+                            alert("Le ticket a été ajouté au panier !");
+                        }
+                    </script>
 
                 </div>
             <?php endforeach; ?>
+
         </div>
         <div class="tickets-right">
             <div id="carousel" class="splide">
