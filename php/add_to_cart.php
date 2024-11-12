@@ -17,9 +17,10 @@ try {
         $shipId = $_POST['id_ship'];
         $departure_planet = $_POST['departure_planet'];
         $arrival_planet = $_POST['arrival_planet'];
+        $date_added = date('Y-m-d H:i:s');
 
-        $query = "INSERT INTO travia_ticket (id_user, unit_price, id_ship, departure_planet, arrival_planet) 
-                  VALUES (:id_user, :unit_price, :id_ship, :departure_planet, :arrival_planet)";
+        $query = "INSERT INTO travia_ticket (id_user, unit_price, id_ship, departure_planet, arrival_planet, date_added) 
+                  VALUES (:id_user, :unit_price, :id_ship, :departure_planet, :arrival_planet, :date_added)";
 
         $stmt = $pdo->prepare($query);
         $stmt->bindParam(':id_user', $userId, PDO::PARAM_INT);
@@ -27,6 +28,7 @@ try {
         $stmt->bindParam(':id_ship', $shipId, PDO::PARAM_INT);
         $stmt->bindParam(':departure_planet', $departure_planet, PDO::PARAM_INT);
         $stmt->bindParam(':arrival_planet', $arrival_planet, PDO::PARAM_INT);
+        $stmt->bindParam(':date_added', $date_added, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
             header('Location: ../src/map.php');

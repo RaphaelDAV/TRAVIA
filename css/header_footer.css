@@ -133,6 +133,183 @@ nav h2 {
 
 /*_______________FOOTER_______________*/
 
+footer {
+    position: relative;
+    background: linear-gradient(90deg, #222, #444);
+    color: #fff;
+    padding: 5vw 5vw 1vw 5vw;
+    overflow: hidden;
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1vw;
+    z-index: 10;
+    width: 100%;
+    align-items: center;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 5vw;
+}
+
+.links{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style: none;
+    gap: 10vw
+}
+
+.footer-links{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    font-size: calc(10px + 0.5vw);
+    gap: 2vw;
+}
+.background-word {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 11vw;
+    color: rgba(255, 255, 255, 0.02);
+    font-weight: bold;
+    white-space: nowrap;
+    pointer-events: none;
+    z-index: 0;
+    text-align: start;
+}
+
+.links h1{
+    color: #ffcc00;
+    font-family: 'Star wars', serif;
+    font-size: calc(10px + 1vw);
+}
+
+.footer-links a,
+.titles a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    cursor: pointer;
+}
+
+.footer-links a:hover,
+.titles a:hover {
+    color: #ffcc00;
+}
+
+.infos {
+    text-align: end;
+    align-self: flex-end;
+    margin-top: auto;
+    font-size: calc(10px + 0.5vw);
+    color: #fff;
+}
+
+.titles{
+    list-style: none;
+}
+
+.titles li{
+    margin-top: 1vw;
+}
+
+.titles li a{
+    margin: 0 10px;
+}
+
+.titles img {
+    width: 2vw;
+    height: 2vw;
+    transition: transform 0.3s ease;
+}
+
+.titles img:hover {
+    transform: scale(1.1);
+}
+
+.copyright {
+    text-align: center;
+    background: linear-gradient(90deg, #757474, #454343);
+
+    color: #fff;
+    font-family: "Josefin Sans", sans-serif;
+    height: 2vw;
+}
+
+.copyright p {
+    margin: 0;
+    font-size: calc(10px + 0.5vw);
+    padding: 0.5vw;
+}
+
+@font-face {
+    font-family: 'Aurebesh';
+    src: url('../assets/font/Aurebesh/aurebesh.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body, .au-font * {
+    font-family: 'Aurebesh', sans-serif !important;
+}
+
+/*_______________LIGHT SABER_______________*/
+
+.light_saber {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75%;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.handle {
+    width: 10vw;
+    height: 1vw;
+    background-color: #333;
+    border: 2px solid #222;
+    border-radius: 2px;
+    margin-right: 5px;
+    position: relative;
+}
+
+.handle::before,
+.handle::after {
+    content: '';
+    position: absolute;
+    width: 0.5vw;
+    height: 1vw;
+    background-color: #666;
+    border-radius: 1px;
+}
+
+.handle::before {
+    left: 2px;
+    top: 1px;
+}
+
+.handle::after {
+    right: 2px;
+    top: 1px;
+}
+
+.blade {
+    flex-grow: 1;
+    height: 8px;
+    background: linear-gradient(90deg, rgba(255, 255, 0, 0.8), rgba(255, 255, 0, 1) 50%, rgba(255, 255, 0, 0.8));
+    border: none;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 1), 0 0 20px rgba(255, 204, 0, 0.8), 0 0 30px rgba(255, 204, 0, 0.6);
+}
+
+
+
 /*_______________SCROLL_______________*/
 ::-webkit-scrollbar {
     width: 12px;

@@ -236,7 +236,7 @@ body{
 .map-section{
     display: flex;
     flex-direction: row;
-    margin: 2%;
+    margin: 10vw 2%;
 }
 #map {
     height: 800px;
@@ -341,14 +341,14 @@ body{
 /*_______________TICKETS_______________*/
 @font-face {
     font-family: Aurebesh;
-    src: url("../assets/font/Aurabesh/Aurebesh.otf") format("opentype");
+    src: url("../assets/font/Aurebesh/Aurebesh.otf") format("opentype");
 }
 
 .tickets{
     display: flex;
     flex-direction: row;
-    height: 90%;
-    margin: 2%;
+    height: 50%;
+    margin: 10vw 2% 10vw 2%;
     max-height: 900px;
     gap: 50px;
     position: relative;
@@ -360,7 +360,7 @@ body{
     overflow-y: scroll;
     overflow-x: hidden;
     width: 100%;
-    height: 100vh;
+    height: 75vh;
     box-sizing: border-box;
 }
 
@@ -368,9 +368,6 @@ body{
     margin-top: 50px;
 }
 
-.tickets-right{
-    width: 26%;
-}
 
 .ticket{
     position: relative;
@@ -386,7 +383,6 @@ body{
     margin-bottom: 30px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 
 .ticket:hover {
     transform: scale(1.05);
@@ -429,8 +425,6 @@ body{
     font-size: 2rem;
 }
 
-
-
 .ticket img{
     border: solid white 0.2vw;
     height: 9vw;
@@ -469,6 +463,7 @@ body{
     height: 1.2vw;
     margin-top: -0.3vw;
 }
+
 .ticket-flex2{
     font-family: Aurebesh, serif;
     font-size: calc(1vw);
@@ -477,6 +472,15 @@ body{
 }
 
 .ticket-flex2 p{
+    margin-left: 0.7vw;
+    margin-bottom: 0;
+}
+
+.ticket-flex2 h3{
+    font-family: "Josefin Sans", sans-serif;
+    margin:0;
+    font-weight: normal;
+    line-height: 1.1;
     margin-left: 0.7vw;
 }
 
@@ -490,6 +494,7 @@ body{
     width: 23vw;
     font-family: "Josefin Sans", sans-serif;
 }
+
 .ticket-flex4{
     border: solid white 0.2vw;
     padding: 0 0.7vw 0 0.7vw;
@@ -526,12 +531,17 @@ body{
 }
 /*_______________SLIDE_______________*/
 
+.tickets-right{
+    width: 26%;
+
+}
+
 .splide {
     height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    font-family: "Josefin Sans", sans-serif;
 }
 
 .splide h1{
@@ -539,45 +549,52 @@ body{
     font-size: calc(15px + 1vw);
 }
 
+.splide h3{
+    font-size: calc(10px + 1vw);
+    text-align: center;
+}
 .splide__track {
-    height: 100%; /* Assure que la piste prend toute la hauteur */
+    height: 100%;
 }
 
 .splide__list {
-    height: 100%; /* Assure que la liste prend toute la hauteur */
+    height: 100%;
 }
 
 .splide__slide {
-    height: 100%; /* Prend toute la hauteur de la piste */
+    height: 100%;
     position: relative;
 }
 
 .splide__slide img {
     width: 100%;
     height: 100%;
-    object-fit: cover; /* Remplit la zone sans distorsion */
+    object-fit: cover;
+    border-radius: 0 0 50px 0;
 }
 
 .slide-content {
     position: absolute;
     bottom: 20px;
-    left: 20px;
     color: white;
-    background-color: rgba(0, 0, 0, 0.5);
-    padding: 10px;
+    padding: 20px;
     border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn {
     display: inline-block;
     padding: 10px 15px;
     color: white;
-    background-color: #007bff;
+    background-color: #E7C863;
     border: none;
     border-radius: 5px;
     text-decoration: none;
 }
 
 .btn:hover {
-    background-color: #0056b3;
+    background-color: #8B7838;
 }

@@ -110,7 +110,7 @@ body{
 
 @font-face {
     font-family: Aurebesh;
-    src: url("../assets/font/Aurabesh/Aurebesh.otf") format("opentype");
+    src: url("../assets/font/Aurebesh/Aurebesh.otf") format("opentype");
 }
 
 .ticket:first-child{
@@ -309,6 +309,19 @@ body{
     color: #E7C863;
 }
 
+.root{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 2vw;
+}
+
+.expired {
+    color: darkred;
+    font-weight: bold;
+}
+
 /*_______________CART RIGHT_______________*/
 .right-cart {
     width: 90%;
@@ -430,3 +443,4 @@ body{
         flex-direction: column;
     }
 }
+

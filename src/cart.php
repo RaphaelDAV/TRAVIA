@@ -14,7 +14,7 @@ try {
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 
-    $query = "SELECT t.id_ticket, t.unit_price, t.id_ship, t.departure_planet, t.arrival_planet, s.name AS ship_name, dp.name AS departure_name, ap.name AS arrival_name, s.id_camp, s.speed_kmh, s.capacity         
+    $query = "SELECT t.id_ticket, t.unit_price, t.id_ship, t.departure_planet, t.arrival_planet, s.name AS ship_name, dp.name AS departure_name, ap.name AS arrival_name, s.id_camp, s.speed_kmh, s.capacity , t.date_added      
         FROM travia_ticket t
         JOIN travia_ship s ON t.id_ship = s.id_ship
         JOIN travia_planet dp ON t.departure_planet = dp.id_planet
@@ -29,9 +29,19 @@ try {
 
     $totalItems = 0;
     $totalPrice = 0;
+
+
     foreach ($ticketInfos as $item) {
         $totalItems += 1;
-        $totalPrice += $item['unit_price'];
+
+        $ticketDate = strtotime($item['date_added']);
+        $currentDate = time();
+        $timeToExpire = 2 * 60;
+
+        $isExpired = ($ticketDate + $timeToExpire) <= $currentDate;
+        if(!$isExpired){
+            $totalPrice += $item['unit_price'];
+        }
     }
 
 
@@ -83,6 +93,11 @@ try {
 
             </div>
 
+            <?php
+            usort($ticketInfos, function($a, $b) {
+                return strtotime($b['date_added']) - strtotime($a['date_added']);
+            });
+            ?>
             <div class="content-cart">
                 <?php if (!empty($ticketInfos)): ?>
                     <?php foreach ($ticketInfos as $ticket): ?>
@@ -109,6 +124,8 @@ try {
                                             $imagePath = "../assets/map/smugglers.png";
                                             break;
                                     }
+
+
                                     ?>
 
                                     <img src="<?php echo $imagePath; ?>" alt="Image du camp" ">
@@ -141,31 +158,48 @@ try {
                                         <input type="hidden" name="id_ticket" value="<?php echo $ticket['id_ticket']; ?>">
                                         <button class="cart-button" onclick="deleteToCart()" type="submit"></button>
                                     </form>
-                                    <script>
-                                        function deleteToCart() {
-                                            alert("Le ticket a été supprimé du panier !");
-                                        }
-                                    </script>
                                 </div>
                             </div>
                             <div class="root">
-                                <?php echo htmlspecialchars($ticket['departure_name']); ?> ➔ <?php echo htmlspecialchars($ticket['arrival_name']); ?>
+                                <p><?php echo htmlspecialchars($ticket['departure_name']); ?> ➔ <?php echo htmlspecialchars($ticket['arrival_name']); ?></p>
+                                <p>Time left: <span class="countdown" data-date="<?php echo htmlspecialchars($ticket['date_added']); ?>"></span></p>
                             </div>
                         </div>
                         <div class="ticket-price"><span class="unit-price"><?php echo $ticket['unit_price']; ?></span> Credits</div>
 
                         <div class="quantity-control">
-                            <button class="quantity-btn" onclick="updateQuantity(this, -1)">-</button>
-                            <input type="text" class="quantity-input" value="1" readonly>
-                            <button class="quantity-btn" onclick="updateQuantity(this, 1)">+</button>
+                            <?php
+                            $ticketDate = strtotime($ticket['date_added']);
+                            $currentDate = time();
+                            $timeToExpire = 2 * 60;
+
+                            $isExpired = ($ticketDate + $timeToExpire) <= $currentDate;
+                            ?>
+
+                            <?php if ($isExpired): ?>
+                                <input type="text" class="quantity-input" value="0" readonly>
+                            <?php else: ?>
+                                <button class="quantity-btn" onclick="updateQuantity(this, -1)">-</button>
+                                <input type="text" class="quantity-input" value="1" readonly>
+                                <button class="quantity-btn" onclick="updateQuantity(this, 1)">+</button>
+                            <?php endif; ?>
                         </div>
 
-                        <div class="ticket-price-total"><span class="total-price"><?php echo $ticket['unit_price'] ?></span> Credits</div>
+
+
+                        <div class="ticket-price-total">
+                            <?php
+                            if ($isExpired){
+                                $ticket['unit_price']=0;
+                            }
+                            ?>
+                            <span class="total-price"><?php echo number_format($ticket['unit_price'], 2); ?></span> Credits
+                        </div>
                         <div id="space"></div>
                     </div>
                     <?php endforeach; ?>
                 <?php else: ?>
-                    <p>Aucun ticket trouvé.</p>
+                    <p>No ticket found.</p>
                 <?php endif; ?>
             </div>
             <script src="../script/cart.js"></script>
@@ -183,11 +217,10 @@ try {
             <div class="total">
                 <div class="total-flex">
                     <h2>Cart Total</h2>
-                    <span id="cart-total"><?php echo $totalPrice; ?></span>
                 </div>
                 <div class="total-flex">
                     <p>Cart Subtotal</p>
-                    <span id="cart-subtotal"><?php echo $totalPrice; ?></span>
+                    <span id="cart-total"><?php echo number_format($totalPrice, 2); ?></span>
                 </div>
                 <div class="total-flex">
                     <p>Discount</p>
@@ -195,12 +228,45 @@ try {
                 </div>
                 <div class="total-flex">
                     <p><b>Cart Total</b></p>
-                    <span id="final-cart-total"><?php echo $totalPrice - 4.00; ?></span>
+                    <span id="final-cart-total"><?php echo max(number_format(0, 2), $totalPrice - 4.00); ?></span>
                 </div>
                 <button type="button" id="submitButton">Apply</button>
             </div>
         </section>
 
     </section>
+
+    <!-- Include footer with JS-->
+    <div id="footer-container"></div>
+    <script>
+        window.onload = function() {
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+
+                    const auLink = document.getElementById('au');
+                    const enLink = document.getElementById('en');
+
+                    if (auLink && enLink) {
+                        auLink.addEventListener('click', function(event) {
+                            event.preventDefault();
+                            document.documentElement.classList.add('au-font');
+                            console.log("Police Aurebesh appliquée");
+                        });
+
+                        enLink.addEventListener('click', function(event) {
+                            event.preventDefault();
+                            document.documentElement.classList.remove('au-font');
+                            console.log("Police Aurebesh retirée");
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error while loading footer:', error);
+                });
+        }
+    </script>
+
 </body>
 </html>

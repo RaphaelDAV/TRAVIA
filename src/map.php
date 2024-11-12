@@ -207,7 +207,16 @@ if (isset($_SESSION['shipCosts'])) {
                     <div class="ticket-flex2">
 
                         <img src="../assets/map/<?php echo htmlspecialchars($ship['name']); ?>.png" alt="spaceship">
-                        <p>Tickets for the <br>Planetary <br>Trips</p>
+                        <?php
+                        $speed = (float) $ship['speed_kmh'];
+                        $distance_in_km =  $distance * pow(10, 9);
+                        $duration_trip = round($distance_in_km / $speed, 2);
+                        ?>
+                        <p>Duration for <br>Journey is</p>
+                        <h3>Time: <?php echo $duration_trip ?> h</h3>
+
+
+
                     </div>
                     <div class="ticket-flex3">
                         <div class="ticket-flex4">
@@ -246,33 +255,33 @@ if (isset($_SESSION['shipCosts'])) {
                         <li class="splide__slide">
                             <img src="../assets/map/naboo.jpg" alt="Image 1">
                             <div class="slide-content">
-                                <h3>Titre de l'image 1</h3>
-                                <p>Description de l'image 1. C'est un texte qui explique ce que l'on voit.</p>
-                                <a href="#" class="btn">En savoir plus</a>
+                                <h3>Naboo</h3>
+                                <p>"A verdant and aquatic paradise, where beauty and politics meet under starlit skies."</p>
+                                <a href="#" class="btn">Learn more</a>
                             </div>
                         </li>
                         <li class="splide__slide">
-                            <img src="../assets/map/naboo.jpg" alt="Image 2">
+                            <img src="../assets/map/coruscant.jpg" alt="Image 2">
                             <div class="slide-content">
-                                <h3>Titre de l'image 2</h3>
-                                <p>Description de l'image 2. C'est un texte qui explique ce que l'on voit.</p>
-                                <a href="#" class="btn">En savoir plus</a>
+                                <h3>Coruscant</h3>
+                                <p>"The galactic capital, a world where politics and power meet in a luminous whirlwind."</p>
+                                <a href="#" class="btn">Learn more</a>
                             </div>
                         </li>
                         <li class="splide__slide">
-                            <img src="../assets/map/naboo.jpg" alt="Image 3">
+                            <img src="../assets/map/endor.jpg" alt="Image 3">
                             <div class="slide-content">
-                                <h3>Titre de l'image 3</h3>
-                                <p>Description de l'image 3. C'est un texte qui explique ce que l'on voit.</p>
-                                <a href="#" class="btn">En savoir plus</a>
+                                <h3>Endor</h3>
+                                <p>"A hidden forest world, where nature shelters heroes and ancient mysteries."</p>
+                                <a href="#" class="btn">Learn more</a>
                             </div>
                         </li>
                         <li class="splide__slide">
-                            <img src="../assets/map/naboo.jpg" alt="Image 4">
+                            <img src="../assets/map/tatooine.jpg" alt="Image 4">
                             <div class="slide-content">
-                                <h3>Titre de l'image 4</h3>
-                                <p>Description de l'image 4. C'est un texte qui explique ce que l'on voit.</p>
-                                <a href="#" class="btn">En savoir plus</a>
+                                <h3>Tatooine</h3>
+                                <p>"The scorching desert where it all begins, where legends come to life under an endless sky."</p>
+                                <a href="#" class="btn">Learn more</a>
                             </div>
                         </li>
                     </ul>
@@ -287,6 +296,37 @@ if (isset($_SESSION['shipCosts'])) {
 
     <script src="../script/slide.js" ></script>
 
+    <!-- Include footer with JS-->
+    <div id="footer-container"></div>
+    <script>
+        window.onload = function() {
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+
+                    const auLink = document.getElementById('au');
+                    const enLink = document.getElementById('en');
+
+                    if (auLink && enLink) {
+                        auLink.addEventListener('click', function(event) {
+                            event.preventDefault();
+                            document.documentElement.classList.add('au-font');
+                            console.log("Police Aurebesh appliquée");
+                        });
+
+                        enLink.addEventListener('click', function(event) {
+                            event.preventDefault();
+                            document.documentElement.classList.remove('au-font');
+                            console.log("Police Aurebesh retirée");
+                        });
+                    }
+                })
+                .catch(error => {
+                    console.error('Error while loading footer:', error);
+                });
+        }
+    </script>
 
 
 
