@@ -1,0 +1,99 @@
+@font-face {
+    font-family: 'Aurebesh';
+    src: url('../assets/font') format('otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    background-color: black;
+    color: white;
+    margin: 0;
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.contact {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    overflow: hidden;
+}
+
+
+
+.background-contact {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    color: rgba(255, 255, 255, 0.1);
+    font-size: calc(15px + 5vw);
+    font-family: 'Aurebesh', sans-serif;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    white-space: nowrap;
+    overflow: hidden;
+    z-index: -1;
+    transform: rotate(30deg);
+}
+
+
+/*_______________LEFT CONTACT_______________*/
+.left-contact{
+    width: 70vw;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#us::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    height: 100%;
+    width: 4px;
+    background-color: #fff;
+
+}
+
+h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3em;
+    color: #fff;
+}
+label, input, textarea,p {
+    font-family: 'Josefin Sans', sans-serif;
+    color: #fff;
+}
+
+button[type="submit"] {
+    background-color: #FFC107;
+    border: none;
+    padding: 10px 20px;
+    color: #000;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+button[type="submit"]:hover {
+    background-color: #FFD54F;
+}
+
+/*_______________RIGHT CONTACT_______________*/
+
+.right-contact{
+    width: 30vw;
+    background-image: url('../assets/contact/right-background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
