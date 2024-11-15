@@ -1,0 +1,191 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin-top: calc(100px + 5vw);
+    background-color: black;
+    color: white;
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: "Josefin Sans", sans-serif;
+
+}
+
+.container{
+    width: 80vw;
+    margin-left: 10vw;
+}
+
+.sort-options {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border-bottom: 3px solid white;
+    border-top: 3px solid white;
+    justify-content: space-between;
+    text-transform: uppercase;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    align-items: center;
+}
+
+.sort-options p {
+    font-weight: bold;
+    font-family: "Josefin Sans", sans-serif;
+    text-decoration: underline;
+    font-size: calc(10px + 0.5vw);
+}
+
+.sort-options a {
+
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-family: "Josefin Sans", sans-serif;
+    font-size: calc(10px + 0.5vw);
+}
+
+.sort-button.active {
+    font-weight: bold;
+    color: #E7C863;
+}
+
+
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2vw;
+    width: 100%;
+    padding: 2vw;
+}
+
+/*_______________CARD_______________*/
+
+.card {
+    background-color: #333;
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    text-align: center;
+    height: 25vw;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.card img {
+    background-image: url("../assets/ships/background-ships.png");
+    padding: 10%;
+    object-fit: contain;
+    min-height: 70%;
+    border-bottom: 3px solid #e7c863;
+}
+
+.card-info {
+    padding: 1vw;
+    text-align: start;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+}
+.card-info p{
+    font-size: 1vw;
+}
+.databank{
+    display: flex;
+    color: #E7C863;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.little-flex2{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-bottom: 1vw;
+}
+.databank img{
+    width: 1vw;
+    background-image: none;
+    padding: 0;
+    object-fit: none;
+    border-bottom: none;
+}
+
+#lines{
+    background-image: none;
+    object-fit: none;
+    border-bottom: 0px;
+}
+.little-flex{
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+
+}
+.databank p{
+    font-size: 1vw;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.ship-name {
+    font-weight: bold;
+    font-size: 16px;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.card:hover{
+    border: 3px solid #E7C863 ;
+}
+
+/*_______________LIGHTBOX_______________*/
+
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 10;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-content {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #222;
+    padding: 20px;
+    border-radius: 8px;
+    width: 300px;
+    color: #fff;
+    text-align: center;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.lightbox-content h2 {
+    margin-bottom: 20px;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.lightbox-content p {
+    margin: 10px 0;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #f0c400;
+}

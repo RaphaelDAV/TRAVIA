@@ -60,7 +60,7 @@ try {
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/star-wars" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-    <title>CART</title>
+    <title>Cart</title>
 </head>
 <body>
     <div id="header-container"></div>

@@ -198,7 +198,7 @@ if (isset($_SESSION['shipCosts'])) {
                         <img src="<?php echo $imagePath; ?>" alt="camp" ">
                         <div class="credits">
                             <p><?php
-                                $unit_price = round($ship['base_cost'] * (1 + ($ship['speed_kmh'] / LIGHT_SPEED)), 2);
+                                $unit_price = round($ship['final_cost'],2);
                                 echo $unit_price ?>
                             </p>
                             <img src="../assets/map/credits.png" alt="credits">
@@ -211,9 +211,12 @@ if (isset($_SESSION['shipCosts'])) {
                         $speed = (float) $ship['speed_kmh'];
                         $distance_in_km =  $distance * pow(10, 9);
                         $duration_trip = round($distance_in_km / $speed, 2);
+
+                        $hours = floor($duration_trip);
+                        $minutes = round(($duration_trip - $hours) * 60);
                         ?>
                         <p>Duration for <br>Journey is</p>
-                        <h3>Time: <?php echo $duration_trip ?> h</h3>
+                        <h3>Duration: <?php echo sprintf("%02d h %02d", $hours, $minutes); ?></h3>
 
 
 
@@ -233,8 +236,8 @@ if (isset($_SESSION['shipCosts'])) {
                     <form class="form_cart" action="../php/add_to_cart.php" method="POST">
                         <input type="hidden" name="unit_price" value="<?php echo htmlspecialchars($unit_price); ?>">
                         <input type="hidden" name="id_ship" value="<?php echo htmlspecialchars($ship['id_ship']); ?>">
-                        <input type="hidden" name="departure_planet" value="<?php echo htmlspecialchars($arrivalPlanet->getIdPlanet()); ?>">
-                        <input type="hidden" name="arrival_planet" value="<?php echo htmlspecialchars($departurePlanet->getIdPlanet()); ?>">
+                        <input type="hidden" name="departure_planet" value="<?php echo htmlspecialchars($departurePlanet->getIdPlanet()); ?>">
+                        <input type="hidden" name="arrival_planet" value="<?php echo htmlspecialchars($arrivalPlanet->getIdPlanet()); ?>">
                         <button class="cart-button" onclick="addToCart()" type="submit"></button>
                     </form>
                     <script>
@@ -327,15 +330,5 @@ if (isset($_SESSION['shipCosts'])) {
                 });
         }
     </script>
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>

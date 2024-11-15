@@ -1,0 +1,111 @@
+@font-face {
+    font-family: 'Aurebesh';
+    src: url('../assets/font') format('otf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body{
+    background-color: black;
+    color: white;
+    margin: 0;
+    background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+/*_______________BANNER_______________*/
+
+.banner {
+    margin-top: calc(100px + 5vw);
+    position: relative;
+    text-align: center;
+    width: 80%;
+    height: 15vw;
+    margin-left: 10%;
+    border-radius: 15px;
+    background-image: url('../assets/account/banner.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+
+.profile {
+    position: absolute;
+    bottom: -5vw;
+    left: 20px;
+    border: 4px solid black;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 10vw;
+    height: 10vw;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+}
+
+.form-section {
+    display: flex;
+    justify-content: center;
+    margin-top: calc(5vw + 50px);
+    margin-bottom: calc(5vw + 50px);
+}
+
+form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2vw;
+    width: 80%;
+}
+
+@media (max-width: 1200px) {
+    form {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-family: "Bebas Neue", serif;
+    font-weight: normal;
+    font-size: calc(10px + 0.5vw);
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+.form-group input {
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    color: #ffffff;
+    font-family: "Josefin Sans", sans-serif;
+}
+
+input::placeholder {
+    color: #cccccc;
+}
+
+input[type="submit"] {
+    background-color: #E7C863;
+    color: #ffffff;
+    border: none;
+    padding: 5px 20px;
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: normal;
+    font-size: calc(10px + 0.5vw);
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+input[type="submit"]:hover {
+    background-color: #8B7838;
+    transform: scale(1.05);
+}

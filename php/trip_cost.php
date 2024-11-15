@@ -35,7 +35,8 @@ if (isset($_SESSION['departurePlanetData']) && isset($_SESSION['arrivalPlanetDat
         foreach ($ships as $ship) {
             $shipSpeed = $ship['speed_kmh'];
 
-            $finalCost =  $shipSpeed *100 / LIGHT_SPEED;
+            $speedIncreasePercentage = (($shipSpeed - LIGHT_SPEED) / LIGHT_SPEED) * 100;
+            $finalCost = $initial_cost * (1 + $speedIncreasePercentage / 100);
 
             $shipCosts[] = [
                 'id_ship' => $ship['id_ship'],
