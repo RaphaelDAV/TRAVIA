@@ -1,0 +1,18 @@
+# Prevent access to sensitive directories
+User-agent: *
+Disallow: /class/
+Disallow: /php/
+Disallow: /script/
+Disallow: /src/
+Disallow: /node_modules/
+
+# Allow access to public resources
+Allow: /assets/
+Allow: /css/
+
+# Prevent access to sensitive files
+Disallow: /package-lock.json
+Disallow: /package.json
+
+# Allow access to the homepage
+Allow: /index.html
