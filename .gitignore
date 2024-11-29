@@ -1,0 +1,30 @@
+# Ignore IDE and editor files
+.idea/
+*.iml
+*.log
+
+# Ignore PHP specific files
+/vendor/
+/composer.lock
+
+# Ignore sensitive files like pdo.php
+pdo.php
+
+# Ignore other potential configuration files that should not be tracked
+/config/
+.env
+/.env
+
+# Ignore cache and session files
+/cache/
+.session/
+
+# Ignore compiled PHP files
+*.php~
+*.phtml~
+
+# Ignore node_modules if using Node.js for front-end
+/node_modules/
+
+# Ignore public build files if using a front-end build tool
+/public/build/

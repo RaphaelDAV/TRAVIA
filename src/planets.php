@@ -1,15 +1,8 @@
 <?php
-// Paramètres de connexion à la base de données
-$servername = 'localhost';
-$username = 'traviauser';
-$password = '0mMitM!E7VmJo%6S';
-$dbname = 'traviauser';
+global $pdo;
+include '../php/pdo.php';
 
 try {
-    // Create a PDO connection
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     // Get order parameter from URL, default to 'name'
     $order_by = isset($_GET['order_by']) ? $_GET['order_by'] : 'name';
     $order_direction = isset($_GET['order_direction']) && $_GET['order_direction'] == 'DESC' ? 'DESC' : 'ASC';
@@ -59,7 +52,7 @@ try {
 <body>
 <div id="header-container"></div>
 <script>
-    fetch('header.html')
+    fetch('header.php')
         .then(response => response.text())
         .then(data => {
             document.getElementById('header-container').innerHTML = data;
@@ -86,6 +79,7 @@ try {
                     <div class="image-container">
                         <?php
                         $imageName = $planet['image'];
+                        $imageName = str_replace(' ', '_', $imageName);
                         $md5Hash = md5($imageName);
                         $defaultImage = '../assets/map/unknow_planet.png';
                         $imagePath = $defaultImage;
@@ -197,7 +191,7 @@ try {
 <div id="footer-container"></div>
 <script>
     window.onload = function() {
-        fetch('footer.html')
+        fetch('src/footer.php')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('footer-container').innerHTML = data;

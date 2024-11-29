@@ -26,7 +26,7 @@ function init() {
 
 
     // Load 3d model
-    const loader = new GLTFLoader().setPath('/assets/home/millennium_falcon/');
+    const loader = new GLTFLoader().setPath('assets/home/millennium_falcon/');
     loader.load('scene.gltf', (gltf) => {
         falconMesh = gltf.scene;
 
@@ -56,7 +56,7 @@ function init() {
     starGeo.setAttribute('position', new THREE.Float32BufferAttribute(starVertices, 3));
     starGeo.velocities = starVelocities;
 
-    const sprite = new THREE.TextureLoader().load('/assets/home/star.png');
+    const sprite = new THREE.TextureLoader().load('assets/home/star.png');
     const starMaterial = new THREE.PointsMaterial({
         color: 0xffffff, 
         size: 0.7,

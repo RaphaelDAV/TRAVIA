@@ -7,7 +7,7 @@ class Planet {
     private $coord;
     private $x;
     private $y;
-    private $subgridcood;
+    private $subgridcoord;
     private $subgridx;
     private $subgridy;
     private $suns;
@@ -21,27 +21,52 @@ class Planet {
     private $id_region;
     private $id_sector;
 
-    public function __construct($data) {
-        $this->id_planet = $data['id_planet'];
-        $this->image = $data['image'];
-        $this->name = $data['name'];
-        $this->coord = $data['coord'];
-        $this->x = $data['x'];
-        $this->y = $data['y'];
-        $this->subgridcood = $data['subgridcood'];
-        $this->subgridx = $data['subgridx'];
-        $this->subgridy = $data['subgridy'];
-        $this->suns = $data['suns'];
-        $this->moons = $data['moons'];
-        $this->planet_position = $data['planet_position'];
-        $this->distance = $data['distance'];
-        $this->lengthday = $data['lengthday'];
-        $this->lengthyear = $data['lengthyear'];
-        $this->diameter = $data['diameter'];
-        $this->gravity = $data['gravity'];
+    // Before the function toLowerCase
+    /*public function __construct($data) {
+        $this->id_planet = $data['Id'];
+        $this->image = $data['Image'];
+        $this->name = $data['Name'];
+        $this->coord = $data['Coord'];
+        $this->x = $data['X'];
+        $this->y = $data['Y'];
+        $this->subgridcoord = $data['SubGridCoord'];
+        $this->subgridx = $data['SubGridX'];
+        $this->subgridy = $data['SubGridY'];
+        $this->suns = $data['Suns'];
+        $this->moons = $data['Moons'];
+        $this->planet_position = $data['Position'];
+        $this->distance = $data['Distance'];
+        $this->lengthday = $data['LengthDay'];
+        $this->lengthyear = $data['LengthYear'];
+        $this->diameter = $data['Diameter'];
+        $this->gravity = $data['Gravity'];
         $this->id_region = $data['id_region'];
         $this->id_sector = $data['id_sector'];
+    }*/
+
+    public function __construct($data) {
+        $this->id_planet = $data['id_planet'] ?? 0;
+        $this->image = $data['image'] ?? '';
+        $this->name = $data['name'] ?? 'Unknown';
+        $this->coord = $data['coord'] ?? '';
+        $this->x = $data['x'] ?? 0;
+        $this->y = $data['y'] ?? 0;
+        $this->subgridcoord = $data['subgridcoord'] ?? '';
+        $this->subgridx = $data['subgridx'] ?? '';
+        $this->subgridy = $data['subgridy'] ?? '';
+        $this->suns = $data['suns'] ?? 0;
+        $this->moons = $data['moons'] ?? 0;
+        $this->planet_position = $data['planet_position'] ?? 0;
+        $this->distance = $data['distance'] ?? '';
+        $this->lengthday = $data['lengthday'] ?? '';
+        $this->lengthyear = $data['lengthyear'] ?? '';
+        $this->diameter = $data['diameter'] ?? '';
+        $this->gravity = $data['gravity'] ?? '';
+        $this->id_region = $data['id_region'] ?? 0;
+        $this->id_sector = $data['id_sector'] ?? 0;
     }
+
+
     public function getIdPlanet(): int
     {
         return $this->id_planet;
@@ -102,14 +127,14 @@ class Planet {
         $this->y = $y;
     }
 
-    public function getSubgridcood(): string
+    public function getSubgridcoord(): string
     {
-        return $this->subgridcood;
+        return $this->subgridcoord;
     }
 
-    public function setSubgridcood(string $subgridcood): void
+    public function setSubgridcoord(string $subgridcoord): void
     {
-        $this->subgridcood = $subgridcood;
+        $this->subgridcoord = $subgridcoord;
     }
 
     public function getSubgridx(): string
@@ -236,8 +261,8 @@ class Planet {
     public function insertPlanet($conn, int $id_region, int $id_sector) {
         $stmt = $conn->prepare("
         INSERT INTO travia_planet 
-        (id_planet, image, name, coord, x, y, subgridcood, subgridx, subgridy, suns, moons, planet_position, distance, lengthday, lengthyear, diameter, gravity, id_region, id_sector)  
-        VALUES (:id, :image, :name, :coord, :x, :y, :subgridcood, :subgridx, :subgridy, :suns, :moons, :planet_position, :distance, :lengthday, :lengthyear, :diameter, :gravity, :id_region, :id_sector)
+        (id_planet, image, name, coord, x, y, subgridcoord, subgridx, subgridy, suns, moons, planet_position, distance, lengthday, lengthyear, diameter, gravity, id_region, id_sector)  
+        VALUES (:id, :image, :name, :coord, :x, :y, :subgridcoord, :subgridx, :subgridy, :suns, :moons, :planet_position, :distance, :lengthday, :lengthyear, :diameter, :gravity, :id_region, :id_sector)
     ");
 
         $stmt->bindParam(':id', $this->id_planet, PDO::PARAM_INT);
@@ -246,7 +271,7 @@ class Planet {
         $stmt->bindParam(':coord', $this->coord, PDO::PARAM_STR);
         $stmt->bindParam(':x', $this->x, PDO::PARAM_INT);
         $stmt->bindParam(':y', $this->y, PDO::PARAM_INT);
-        $stmt->bindParam(':subgridcood', $this->subgridcood, PDO::PARAM_STR);
+        $stmt->bindParam(':subgridcoord', $this->subgridcoord, PDO::PARAM_STR);
         $stmt->bindParam(':subgridx', $this->subgridx, PDO::PARAM_STR);
         $stmt->bindParam(':subgridy', $this->subgridy, PDO::PARAM_STR);
         $stmt->bindParam(':suns', $this->suns, PDO::PARAM_INT);

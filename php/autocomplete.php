@@ -1,15 +1,8 @@
 <?php
-// Database connection parameters
-$servername = 'localhost';
-$username = 'traviauser';
-$password = '0mMitM!E7VmJo%6S';
-$dbname = 'traviauser';
+global $pdo;
+include '../php/pdo.php';
 
 try {
-    // Create a PDO connection
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     // Get the search term from the query string
     $term = isset($_GET['term']) ? $_GET['term'] : '';
 

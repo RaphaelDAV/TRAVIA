@@ -1,13 +1,7 @@
 <?php
-$servername = 'localhost';
-$username = 'traviauser';
-$password = '0mMitM!E7VmJo%6S';
-$dbname = 'traviauser';
-
+global $pdo;
+include '../php/pdo.php';
 try {
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     $stmt = $pdo->query('SELECT 
         travia_planet.name, 
         travia_planet.x, 

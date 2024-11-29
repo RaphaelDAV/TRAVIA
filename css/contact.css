@@ -49,26 +49,91 @@ body{
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
+    gap: 5vw;
+    padding: 10vw;
+
+}
+
+.left-flex{
+    text-align: right;
+}
+
+#us {
+    position: relative;
 }
 
 #us::before {
     content: "";
     position: absolute;
+    bottom: -10px;
     left: 0;
-    height: 100%;
-    width: 4px;
+    height: 1vw;
+    width: 60%;
     background-color: #fff;
-
 }
+
 
 h2 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 3em;
+    font-size: calc(30px + 8vw);
     color: #fff;
+    line-height: 0;
 }
-label, input, textarea,p {
+
+label, input, textarea,p, label {
     font-family: 'Josefin Sans', sans-serif;
     color: #fff;
+    font-size: calc(10px + 0.5vw);
+}
+
+p{
+    color: #E7C863;
+    font-size: calc(10px + 1vw);
+}
+form {
+    width: 25vw;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    z-index: 1;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #fff;
+    background-color: transparent;
+    color: white;
+    border-radius: 5px;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+textarea {
+    resize: none;
+    height: 200px;
+}
+
+/* Submit Button */
+button[type="submit"] {
+    font-size: calc(10px + 0.5vw);
+    align-self: flex-start;
+    background-color: #E7C863;
+    border: none;
+    padding: 10px 20px;
+    color: #000;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #FFD54F;
 }
 
 button[type="submit"] {

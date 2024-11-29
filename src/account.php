@@ -13,7 +13,7 @@
 <body>
 <div id="header-container"></div>
 <script>
-    fetch('header.html')
+    fetch('header.php')
         .then(response => response.text())
         .then(data => {
             document.getElementById('header-container').innerHTML = data;
@@ -71,7 +71,7 @@
 <div id="footer-container"></div>
 <script>
     window.onload = function() {
-        fetch('footer.html')
+        fetch('src/footer.php')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('footer-container').innerHTML = data;

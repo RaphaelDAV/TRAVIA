@@ -1,16 +1,11 @@
 <?php
+
 session_start();
 
-$servername = 'localhost';
-$username = 'traviauser';
-$password = '0mMitM!E7VmJo%6S';
-$dbname = 'traviauser';
+global $pdo;
+include '../php/pdo.php';
 
 try {
-    // Create a PDO connection
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $userId = 1;
         $unitPrice = $_POST['unit_price'];
@@ -31,6 +26,13 @@ try {
         $stmt->bindParam(':date_added', $date_added, PDO::PARAM_STR);
 
         if ($stmt->execute()) {
+
+            //Add log add to cart
+            include 'create_log.php';
+            $id_ticket = $pdo->lastInsertId();
+            logCart($pdo, 1, $id_ticket,1);
+
+
             header('Location: ../src/map.php');
             exit();
         } else {

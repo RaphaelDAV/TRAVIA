@@ -1,20 +1,15 @@
 <?php
 
+global $pdo;
+include '../php/pdo.php';
+
 if (isset($_SESSION['departurePlanetData']) && isset($_SESSION['arrivalPlanetData'])) {
-    // Database connection parameters
-    $servername = 'localhost';
-    $username = 'traviauser';
-    $password = '0mMitM!E7VmJo%6S';
-    $dbname = 'traviauser';
 
     // Constants
     define('LIGHT_SPEED', 1080000000); // Speed of light in km/h
     define('COST_PER_TRILLION_KM', 100); // Cost per trillion km
 
     try {
-        // Create a PDO connection
-        $pdo = new PDO("mysql:host=$servername;dbname=$dbname;charset=utf8", $username, $password);
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
         //Departure and arrival planet
         $departurePlanetData = $_SESSION['departurePlanetData'];

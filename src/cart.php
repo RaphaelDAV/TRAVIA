@@ -1,19 +1,12 @@
 <?php
-session_start();
-$servername = 'localhost';
-$username = 'traviauser';
-$password = '0mMitM!E7VmJo%6S';
-$dbname = 'traviauser';
+global $pdo;
+include '../php/pdo.php';;
 
 // Constants
 define('LIGHT_SPEED', 1080000000); // Speed of light in km/h
 define('COST_PER_TRILLION_KM', 100); // Cost per trillion km
 
 try {
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-
     $query = "SELECT t.id_ticket, t.unit_price, t.id_ship, t.departure_planet, t.arrival_planet, s.name AS ship_name, dp.name AS departure_name, ap.name AS arrival_name, s.id_camp, s.speed_kmh, s.capacity , t.date_added      
         FROM travia_ticket t
         JOIN travia_ship s ON t.id_ship = s.id_ship
@@ -65,7 +58,7 @@ try {
 <body>
     <div id="header-container"></div>
     <script>
-        fetch('header.html')
+        fetch('header.php')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('header-container').innerHTML = data;
@@ -154,7 +147,7 @@ try {
                                 </div>
 
                                 <div>
-                                    <form class="form_cart" action="../php/delete_ticket.php" method="POST">
+                                    <form class="form_cart" action="./php/delete_ticket.php" method="POST">
                                         <input type="hidden" name="id_ticket" value="<?php echo $ticket['id_ticket']; ?>">
                                         <button class="cart-button" onclick="deleteToCart()" type="submit"></button>
                                     </form>
@@ -240,7 +233,7 @@ try {
     <div id="footer-container"></div>
     <script>
         window.onload = function() {
-            fetch('footer.html')
+            fetch('src/footer.php')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('footer-container').innerHTML = data;

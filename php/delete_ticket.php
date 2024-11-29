@@ -1,24 +1,24 @@
 <?php
-$servername = 'localhost';
-$username = 'traviauser';
-$password = '0mMitM!E7VmJo%6S';
-$dbname = 'traviauser';
+global $pdo;
+include '../php/pdo.php';
 
 try {
-    $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if (isset($_POST['id_ticket']) && !empty($_POST['id_ticket'])) {
             $id_ticket = $_POST['id_ticket'];
 
-            $query = "DELETE FROM travia_ticket WHERE id_ticket = :id_ticket";
+            $query = "UPDATE travia_ticket SET id_user = NULL WHERE id_ticket = :id_ticket";
 
             $stmt = $pdo->prepare($query);
             $stmt->bindParam(':id_ticket', $id_ticket, PDO::PARAM_INT);
             $stmt->execute();
 
             if ($stmt->execute()) {
+
+                //Add log add to cart
+                include 'create_log.php';
+                logCart($pdo, 1, $id_ticket,0);
+
                 header('Location: ../src/cart.php');
                 exit();
             } else {

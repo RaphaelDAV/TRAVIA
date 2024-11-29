@@ -1,7 +1,8 @@
     var map = L.map('map', {
-    crs: L.CRS.Simple,
-    minZoom: 2
-});
+        crs: L.CRS.Simple,
+        attributionControl: false,
+        minZoom: 2
+    });
 
     function xy(x, y) {
     return L.latLng(y, x);
@@ -143,7 +144,8 @@
                 if (planet.name === departurePlanet) {
                     departurePlanetPos = position;
                     selectPlanet(planet, position);
-                } else if (planet.name === arrivalPlanet) {
+                }
+                if (planet.name === arrivalPlanet) {
                     arrivalPlanetPos = position;
                     selectPlanet(planet, position);
                 }

@@ -13,6 +13,7 @@ $distance = $departurePlanet->calculateDistance($arrivalPlanet);
 
 //Image of arrival planet
 $imageName = $arrivalPlanet->getImage();
+$imageName = str_replace(' ', '_', $imageName);
 $md5Hash = md5($imageName);
 $defaultImage = '../assets/map/unknow_planet.png';
 $imagePath = $defaultImage;
@@ -63,7 +64,7 @@ if (isset($_SESSION['shipCosts'])) {
 <body>
     <div id="header-container"></div>
     <script>
-        fetch('header.html')
+        fetch('header.php')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('header-container').innerHTML = data;
@@ -80,7 +81,7 @@ if (isset($_SESSION['shipCosts'])) {
             <h2><b>Coord :</b>
                 <?php echo $arrivalPlanet->getSubgridx(); ?>
                 <?php echo $arrivalPlanet->getSubgridy(); ?>
-                <?php echo $arrivalPlanet->getSubgridcood(); ?>
+                <?php echo $arrivalPlanet->getSubgridcoord(); ?>
                 <?php echo $arrivalPlanet->getCoord(); ?>
             </h2>
             <div class="flex1">
@@ -233,7 +234,7 @@ if (isset($_SESSION['shipCosts'])) {
                         </div>
                     </div>
 
-                    <form class="form_cart" action="../php/add_to_cart.php" method="POST">
+                    <form class="form_cart" action="./php/add_to_cart.php" method="POST">
                         <input type="hidden" name="unit_price" value="<?php echo htmlspecialchars($unit_price); ?>">
                         <input type="hidden" name="id_ship" value="<?php echo htmlspecialchars($ship['id_ship']); ?>">
                         <input type="hidden" name="departure_planet" value="<?php echo htmlspecialchars($departurePlanet->getIdPlanet()); ?>">
@@ -303,7 +304,7 @@ if (isset($_SESSION['shipCosts'])) {
     <div id="footer-container"></div>
     <script>
         window.onload = function() {
-            fetch('footer.html')
+            fetch('src/footer.php')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('footer-container').innerHTML = data;

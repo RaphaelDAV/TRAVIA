@@ -8,6 +8,15 @@
 	<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
 	<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
 	<link href="https://fonts.cdnfonts.com/css/star-wars" rel="stylesheet">
+
+	<!--  CSS of Leaflet.js -->
+	<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+	<!--  JS of Leaflet.js -->
+	<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+	<!--<base href="http://localhost:63342/TRAVIA/">-->
+	<base href="/~raphael.daviot/TRAVIA/">
 </head>
 <body>
 
@@ -16,7 +25,7 @@
 	<!-- Include header with JS-->
 	<div id="header-container"></div>
 	<script>
-		fetch('./src/header.html')
+		fetch('./src/header.php')
 				.then(response => response.text())
 				.then(data => {
 					document.getElementById('header-container').innerHTML = data;
@@ -35,7 +44,7 @@
 	<p>“Travel through space in search of unforgettable memories”</p>
 
 	<video id="background-video" muted>
-		<source src="/assets/home/hyperspace_jump_cut_3.mp4" type="video/mp4">
+		<source src="./assets/home/hyperspace_jump_cut_3.mp4" type="video/mp4">
 		Your navigator doesn't support video.
 	</video>
 
@@ -45,18 +54,18 @@
 <section id="route" class="route">
 	<div class="content">
 		<div class="destroyer">
-			<img src="assets/home/destroyer.png" alt="Star Destroyer">
+			<img src="./assets/home/destroyer.png" alt="Star Destroyer">
 		</div>
 		<div class="form">
 			<h2>Book your interplanetary trip</h2>
-			<form id="form" method="POST"  action="php/form.php">
+			<form id="form" method="POST"  action="./php/form.php">
 				<div class="d&a">
 					<input type="text" id="departurePlanet" name="departurePlanet" placeholder="Departure" autocomplete="off" required value="Coruscant">
 					<div class="suggestions" id="suggestions"></div>
 					<input type="text" id="arrivalPlanet" name="arrivalPlanet" placeholder="Arrival" autocomplete="off" required value="Tatooine">
 					<div class="suggestions2" id="suggestions2"></div>
 				</div>
-				<script src="/script/autocomplete.js" ></script>
+				<script src="./script/autocomplete.js" ></script>
 
 				<input type="date" id="date" name="date" placeholder="Date">
 
@@ -65,19 +74,48 @@
 					<input type="number" id="travelers" value="1" min="1" readonly>
 					<button type="button" id="increase">+</button>
 				</div>
-				<script src="/script/travelers_buttons.js" ></script>
+				<script src="./script/travelers_buttons.js" ></script>
+				<div class="small-flex">
+					<button type="button" id="mapButton" class="map-button">MAP</button>
+					<input type="submit" id="submitButton" value="SUBMIT">
+				</div>
 
-				<input type="submit" id="submitButton" value="SUBMIT">
-				<!-- <script src="/script/hyperspace_jump.js" ></script>-->
+				<script src="./script/hyperspace_jump.js" ></script>
 			</form>
 		</div>
 	</div>
 </section>
 
+<section class="map-section">
+	<h2>Choose your departure and arrival planets</h2>
+	<div class="map-flex">
+		<div id="map"></div>
+		<script src="./script/choose_map.js"></script>
+		<div class="departureAndArrival">
+			<h3>DEPARTURE PLANET:<br> <span id="departurePlanetName">None</span></h3>
+			<h3>ARRIVAL PLANET: <br><span id="arrivalPlanetName">None</span></h3>
+		</div>
+	</div>
+</section>
+
+
+<!-- Script -->
+<script>
+	document.getElementById('mapButton').addEventListener('click', function() {
+		const chooseMapSection = document.querySelector('.map-section');
+		if (chooseMapSection.style.display === 'none') {
+			chooseMapSection.style.display = 'block';
+		} else {
+			chooseMapSection.style.display = 'none';
+		}
+	});
+</script>
+
+<!--Validate the form-->
 <script>
 	let validPlanets = [];
 
-	fetch('php/get_planets.php')
+	fetch('./php/get_planets.php')
 			.then(response => response.json())
 			.then(data => {
 				validPlanets = data.map(planet => planet.name.toLowerCase());
@@ -132,7 +170,7 @@
 
 			<div class="video-tutorial">
 				<h2>BE GUIDED ON TRAVIA</h2>
-				<video src="assets/home/hyperspace_jump.mp4" controls alt="Play Tutorial"></video>
+				<video src="./assets/home/hyperspace_jump.mp4" controls alt="Play Tutorial"></video>
 				<div class="tutorial-text">TUTORIAL FOR USING THE SITE TO GET STARTED</div>
 				<hr>
 			</div>
@@ -158,7 +196,7 @@
 	<div class="ships-grid">
 		<div class="ship">
 			<div class="background-ship">
-				<img src="/assets/home/faster.png" alt="YT-1300">
+				<img src="./assets/home/faster.png" alt="YT-1300">
 			</div>
 			<div class="entitle">FASTER</div>
 			<p>YT-1300</p>
@@ -166,7 +204,7 @@
 		</div>
 		<div class="ship">
 			<div class="background-ship">
-			<img src="/assets/home/capacity.png" alt="VCX-100">
+			<img src="./assets/home/capacity.png" alt="VCX-100">
 			</div>
 			<div class="entitle">LARGEST CAPACITY</div>
 			<p>VCX-100</p>
@@ -174,7 +212,7 @@
 		</div>
 		<div class="ship">
 			<div class="background-ship">
-			<img src="/assets/home/used.png" alt="YT-2400">
+			<img src="./assets/home/used.png" alt="YT-2400">
 			</div>
 			<div class="entitle">MOST USED</div>
 			<p>YT-2400</p>
@@ -188,7 +226,7 @@
 <div id="footer-container"></div>
 <script>
 	window.onload = function() {
-		fetch('src/footer.html')
+		fetch('./src/footer.php')
 				.then(response => response.text())
 				.then(data => {
 					document.getElementById('footer-container').innerHTML = data;

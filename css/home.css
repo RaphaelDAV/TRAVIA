@@ -27,7 +27,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: 2;
+  z-index: 1000;
 }
 .fade-out {
   opacity: 0;
@@ -323,6 +323,162 @@ p{
   background-color: #f0f0f0;
 }
 
+/*_______________LIGHTBOX MAP_______________*/
+.small-flex{
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+}
+.map-button {
+  font-size: calc(10px + 0.5vw);
+  font-family: "Josefin Sans", sans-serif;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  padding: 10px;
+  transition: transform 0.3s ease;
+}
+
+.map-section{
+  display: block;
+  z-index: 10;
+}
+.map-button:hover {
+  text-decoration: underline;
+  color: #E7C863;
+}
+
+#map {
+  height: 800px;
+  width: 50%;
+  margin-left: 25%;
+  background-color: transparent;
+  background-image: radial-gradient(circle at center, rgba(0, 153, 255, 0.4), transparent 75%);
+  z-index: 10;
+}
+
+
+.map-section h2{
+  font-size: calc(20px + 4vw);
+  font-weight: inherit;
+  font-family: "Bebas Neue", sans-serif;
+  color: rgba(0, 0, 0, 0);
+  -webkit-text-stroke: 0.1vw #ffffff;
+  text-align: center;
+  margin: 2%;
+}
+
+.map-section h3{
+  font-size: calc(10px + 1vw);
+  font-family: "Josefin Sans", sans-serif;
+  color: #E7C863;
+  text-decoration: underline;
+}
+
+.map-section h3 span{
+  color: white;
+  text-decoration: none;
+}
+.map-flex{
+  display: flex;
+  flex-direction: row;
+}
+
+.departureAndArrival {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+.grid-label {
+  font-size: 12px;
+  color: rgba(0, 255, 255, 0.8);
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+  font-family: 'Orbitron', sans-serif;
+  animation: flicker 3s infinite alternate;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 0.95; }
+  50% { opacity: 1; }
+}
+
+.hologram-marker {
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.4);
+  color: rgb(2, 13, 21);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.hologram-line {
+  stroke: rgba(0, 255, 255, 0.5);
+  stroke-width: 1;
+  filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.8));
+}
+
+
+
+.leaflet-popup-content, .leaflet-popup-tip {
+  color: rgb(2, 13, 21);
+  text-shadow: 0 0 5px rgba(0, 255, 255, 0.8);
+  font-family: 'Orbitron', sans-serif;
+}
+
+@keyframes flicker {
+  0%, 100% { opacity: 0.95; }
+  50% { opacity: 1; }
+}
+
+.hologram-marker {
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.6), 0 0 20px rgba(0, 255, 255, 0.4);
+  color: rgb(2, 13, 21);
+  font-family: 'Orbitron', sans-serif;
+}
+
+.hologram-line {
+  stroke: rgba(0, 255, 255, 0.5);
+  stroke-width: 1;
+  filter: drop-shadow(0 0 5px rgba(0, 255, 255, 0.8));
+}
+
+.radio-buttons{
+  color: white;
+  margin-bottom: 100px;
+  font-family: "Josefin Sans", sans-serif;
+}
+
+
+.leaflet-popup-content {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 15px;
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 14px;
+  color: #333;
+  max-width: 250px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.leaflet-popup-tip {
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.leaflet-popup {
+  border: 2px solid #007bff;
+}
+
+.leaflet-popup-content .popup-title {
+  font-weight: bold;
+  font-size: 16px;
+  color: #007bff;
+  margin-bottom: 10px;
+}
+
+.leaflet-popup-content {
+  transition: transform 0.3s ease-in-out;
+}
 /*_______________TRANSITION_______________*/
 .transition {
   height: 50px;
@@ -539,7 +695,7 @@ p{
 
 .background-ship {
   width: 30vw;
-  background-image: url('/assets/home/background-ships.png');
+  background-image: url('../assets/home/background-ships.png');
   background-position: center;
   background-repeat: no-repeat;
   margin-bottom:20px;
