@@ -144,13 +144,14 @@ fetch('./php/get_planets.php')
             var marker = L.circleMarker(position, circleOptions)
                 .addTo(map)
                 .bindPopup(`
-                    <div>
-                        <strong>${planet.name}</strong> <br>
-                        Diamètre: ${diameter} km <br>
-                        <button onclick="setDeparture('${planet.name}', [${position.lat}, ${position.lng}])">Départ</button>
-                        <button onclick="setArrival('${planet.name}', [${position.lat}, ${position.lng}])">Arrivée</button>
-                    </div>
-                `);
+                <div>
+                    <strong>${planet.name}</strong> <br>
+                    Diamètre: ${diameter} km <br>
+                    <button onclick="setDeparture('${encodeURIComponent(planet.name)}', [${position.lat}, ${position.lng}])">Départ</button>
+                    <button onclick="setArrival('${encodeURIComponent(planet.name)}', [${position.lat}, ${position.lng}])">Arrivée</button>
+                </div>
+            `)
+
 
 
             if (planet.name === departurePlanet) {

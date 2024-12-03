@@ -261,7 +261,7 @@ if (isset($_SESSION['shipCosts'])) {
                             <div class="slide-content">
                                 <h3>Naboo</h3>
                                 <p>"A verdant and aquatic paradise, where beauty and politics meet under starlit skies."</p>
-                                <a href="#" class="btn">Learn more</a>
+                                <a href="./src/planets.php" class="btn">Learn more</a>
                             </div>
                         </li>
                         <li class="splide__slide">
@@ -269,7 +269,7 @@ if (isset($_SESSION['shipCosts'])) {
                             <div class="slide-content">
                                 <h3>Coruscant</h3>
                                 <p>"The galactic capital, a world where politics and power meet in a luminous whirlwind."</p>
-                                <a href="#" class="btn">Learn more</a>
+                                <a href="./src/planets.php" class="btn">Learn more</a>
                             </div>
                         </li>
                         <li class="splide__slide">
@@ -277,7 +277,7 @@ if (isset($_SESSION['shipCosts'])) {
                             <div class="slide-content">
                                 <h3>Endor</h3>
                                 <p>"A hidden forest world, where nature shelters heroes and ancient mysteries."</p>
-                                <a href="#" class="btn">Learn more</a>
+                                <a href="./src/planets.php" class="btn">Learn more</a>
                             </div>
                         </li>
                         <li class="splide__slide">
@@ -285,7 +285,7 @@ if (isset($_SESSION['shipCosts'])) {
                             <div class="slide-content">
                                 <h3>Tatooine</h3>
                                 <p>"The scorching desert where it all begins, where legends come to life under an endless sky."</p>
-                                <a href="#" class="btn">Learn more</a>
+                                <a href="./src/planets.php" class="btn">Learn more</a>
                             </div>
                         </li>
                     </ul>

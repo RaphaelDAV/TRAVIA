@@ -43,6 +43,7 @@ try {
 <!-- Include header with JS-->
 
 <div id="header-container"></div>
+<script src="../script/nav_bar.js" defer></script>
 <script>
     fetch('header.php')
         .then(response => response.text())
@@ -57,11 +58,11 @@ try {
 <section class="container">
     <div class="sort-options">
         <p>Order by:</p>
-        <a href="?order_by=id_ship&order_direction=<?php echo ($order_direction == 'DESC' ? 'ASC' : 'DESC'); ?>" class="sort-button <?php echo ($order_by == 'id_ship' ? 'active' : ''); ?>">ID <?php echo ($order_direction == 'ASC' ? '↓' : '↑'); ?></a>
-        <a href="?order_by=name&order_direction=<?php echo ($order_direction == 'DESC' ? 'ASC' : 'DESC'); ?>" class="sort-button <?php echo ($order_by == 'name' ? 'active' : ''); ?>">Name <?php echo ($order_direction == 'ASC' ? '↓' : '↑'); ?></a>
-        <a href="?order_by=capacity&order_direction=<?php echo ($order_direction == 'DESC' ? 'ASC' : 'DESC'); ?>" class="sort-button <?php echo ($order_by == 'capacity' ? 'active' : ''); ?>">Capacity <?php echo ($order_direction == 'ASC' ? '↓' : '↑'); ?></a>
-        <a href="?order_by=speed_kmh&order_direction=<?php echo ($order_direction == 'DESC' ? 'ASC' : 'DESC'); ?>" class="sort-button <?php echo ($order_by == 'speed_kmh' ? 'active' : ''); ?>">Speed <?php echo ($order_direction == 'ASC' ? '↓' : '↑'); ?></a>
-        <a href="?order_by=id_camp&order_direction=<?php echo ($order_direction == 'DESC' ? 'ASC' : 'DESC'); ?>" class="sort-button <?php echo ($order_by == 'id_camp' ? 'active' : ''); ?>">Camp <?php echo ($order_direction == 'ASC' ? '↓' : '↑'); ?></a>
+        <a href="./src/ships.php?order_by=id_ship&order_direction=<?php echo ($order_direction == 'DESC' ? 'ASC' : 'DESC'); ?>" class="sort-button <?php echo ($order_by == 'id_ship' ? 'active' : ''); ?>">ID <?php echo ($order_direction == 'ASC' ? '↓' : '↑'); ?></a>
+        <a href="./src/ships.php?order_by=name&order_direction=<?php echo ($order_direction == 'DESC' ? 'ASC' : 'DESC'); ?>" class="sort-button <?php echo ($order_by == 'name' ? 'active' : ''); ?>">Name <?php echo ($order_direction == 'ASC' ? '↓' : '↑'); ?></a>
+        <a href="./src/ships.php?order_by=capacity&order_direction=<?php echo ($order_direction == 'DESC' ? 'ASC' : 'DESC'); ?>" class="sort-button <?php echo ($order_by == 'capacity' ? 'active' : ''); ?>">Capacity <?php echo ($order_direction == 'ASC' ? '↓' : '↑'); ?></a>
+        <a href="./src/ships.php?order_by=speed_kmh&order_direction=<?php echo ($order_direction == 'DESC' ? 'ASC' : 'DESC'); ?>" class="sort-button <?php echo ($order_by == 'speed_kmh' ? 'active' : ''); ?>">Speed <?php echo ($order_direction == 'ASC' ? '↓' : '↑'); ?></a>
+        <a href="./src/ships.php?order_by=id_camp&order_direction=<?php echo ($order_direction == 'DESC' ? 'ASC' : 'DESC'); ?>" class="sort-button <?php echo ($order_by == 'id_camp' ? 'active' : ''); ?>">Camp <?php echo ($order_direction == 'ASC' ? '↓' : '↑'); ?></a>
     </div>
 
     <div class="gallery">
@@ -107,7 +108,7 @@ try {
 <div id="footer-container"></div>
 <script>
     window.onload = function() {
-        fetch('src/footer.php')
+        fetch('../src/footer.php')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('footer-container').innerHTML = data;

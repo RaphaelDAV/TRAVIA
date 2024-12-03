@@ -15,6 +15,7 @@
 <body>
 <!-- Include header with JS-->
 <div id="header-container"></div>
+<script src="../script/nav_bar.js" defer></script>
 <script>
     fetch('src/header.php')
         .then(response => response.text())
@@ -92,7 +93,7 @@
 <div id="footer-container"></div>
 <script>
     window.onload = function() {
-        fetch('src/footer.php')
+        fetch('../src/footer.php')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('footer-container').innerHTML = data;

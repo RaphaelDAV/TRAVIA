@@ -9,33 +9,18 @@ require '../../class/Region.php';
 require '../../class/Sector.php';
 require '../../class/Planet.php';
 require '../../class/Trip.php';
+require '../../class/Sun.php';
 
 // Clear existing data
-$pdo->exec("DELETE FROM Have_day");
-$pdo->exec("DELETE FROM Have_sun");
-$pdo->exec("DELETE FROM travia_day_content");
+$tablesToReset = [
+    "travia_trips", "travia_day_name",
+    "travia_sun", "travia_planet", "travia_sector", "travia_region"
+];
 
-$pdo->exec("DELETE FROM travia_journeys");
-$pdo->exec("DELETE FROM travia_trips");
-$pdo->exec("DELETE FROM travia_day_name");
-$pdo->exec("DELETE FROM travia_sun");
-
-$pdo->exec("DELETE FROM travia_planet");
-
-$pdo->exec("DELETE FROM travia_sector");
-$pdo->exec("DELETE FROM travia_region");
-
-// Reset AUTO_INCREMENT for all tables
-$pdo->exec("ALTER TABLE Have_day AUTO_INCREMENT = 1");
-$pdo->exec("ALTER TABLE Have_sun AUTO_INCREMENT = 1");
-$pdo->exec("ALTER TABLE travia_day_content AUTO_INCREMENT = 1");
-$pdo->exec("ALTER TABLE travia_journeys AUTO_INCREMENT = 1");
-$pdo->exec("ALTER TABLE travia_trips AUTO_INCREMENT = 1");
-$pdo->exec("ALTER TABLE travia_day_name AUTO_INCREMENT = 1");
-$pdo->exec("ALTER TABLE travia_sun AUTO_INCREMENT = 1");
-$pdo->exec("ALTER TABLE travia_planet AUTO_INCREMENT = 1");
-$pdo->exec("ALTER TABLE travia_sector AUTO_INCREMENT = 1");
-$pdo->exec("ALTER TABLE travia_region AUTO_INCREMENT = 1");
+foreach ($tablesToReset as $table) {
+    $pdo->exec("DELETE FROM $table");
+    $pdo->exec("ALTER TABLE $table AUTO_INCREMENT = 1");
+}
 // Load JSON File
 $jsonData = file_get_contents('../../assets/data/planets_details.json');
 $dataArray = json_decode($jsonData, true);
@@ -54,23 +39,34 @@ $dataArray = array_map('toLowerCaseKeys', $dataArray);*/
 foreach ($dataArray as $data) {
     $region = new Region();
     $sector = new Sector();
+    $sun = new Sun();
 
-    $regionId = $region->getOrInsertRegion($pdo, $data['Region']);
-    $sectorId = $sector->getOrInsertSector($pdo, $data['Sector']);
+    $regionId = isset($data['Region']) ? $region->getOrInsertRegion($pdo, $data['Region']) : null;
+    $sectorId = isset($data['Sector']) ? $sector->getOrInsertSector($pdo, $data['Sector']) : null;
+    $sunId = isset($data['SunName']) && !empty($data['SunName']) ? $sun->getOrInsertSun($pdo, $data['SunName']) : null;
 
     if ($regionId !== null && $sectorId !== null) {
         $planet = new Planet($data);
-        $planetId = $planet->insertPlanet($pdo, $regionId, $sectorId);
+        $planetId = $planet->insertPlanet($pdo, $regionId, $sectorId, $sunId);
 
         // Insert trips for this planet
         foreach ($data['trips'] as $dayName => $tripDetails) {
-            $trip = new Trip($dayName, $tripDetails);
-            $tripId = $trip->insertTrip($pdo, $planetId);
-            $dayNameId = $trip->getOrInsertDayName($pdo);
-            $trip->insertHaveDay($pdo, $tripId, $dayNameId);
-            $trip->insertDayContent($pdo, $dayNameId);
+            foreach ($tripDetails as $tripData) {
+                $departureTime = $tripData['departure_time'][0];
+                $destinationPlanetId = $tripData['destination_planet_id'][0];
+                $shipId = $tripData['ship_id'][0];
 
+                $trip = new Trip($dayName, $departureTime, $destinationPlanetId, $shipId);
+                $dayNameId = $trip->getOrInsertDayName($pdo);
+
+                if ($dayNameId) {
+                    $trip->insertTrip($pdo, $departureTime, $planetId, $shipId, $dayNameId);
+                } else {
+                    echo "Error for insertion of trips " . htmlspecialchars($dayName) . "<br>";
+                }
+            }
         }
+
     } else {
         echo "Error for insertion of region or sector for planet " . htmlspecialchars($data['Name']) . "<br>";
     }

@@ -4,8 +4,6 @@ require '../../php/pdo.php';
 require '../../class/Ship.php';
 
 // Clear existing data
-$pdo->exec("DELETE FROM travia_day_content");
-$pdo->exec("DELETE FROM Have_day");
 $pdo->exec("DELETE FROM travia_trips");
 $pdo->exec("DELETE FROM travia_ship");
 $pdo->exec("DELETE FROM travia_camp");

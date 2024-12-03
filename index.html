@@ -24,6 +24,7 @@
 
 	<!-- Include header with JS-->
 	<div id="header-container"></div>
+	<script src="./script/nav_bar.js" defer></script>
 	<script>
 		fetch('./src/header.php')
 				.then(response => response.text())
@@ -87,6 +88,7 @@
 </section>
 
 <section class="map-section">
+	<div class="transition"></div>
 	<h2>Choose your departure and arrival planets</h2>
 	<div class="map-flex">
 		<div id="map"></div>

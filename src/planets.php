@@ -51,6 +51,7 @@ try {
 </head>
 <body>
 <div id="header-container"></div>
+<script src="../script/nav_bar.js" defer></script>
 <script>
     fetch('header.php')
         .then(response => response.text())
@@ -66,10 +67,10 @@ try {
 <section class="container">
     <div class="sort-options">
         <p>Order by:</p>
-        <a href="?order_by=name&order_direction=<?php echo ($order_direction == 'DESC' ? 'ASC' : 'DESC'); ?>" class="sort-button <?php echo ($order_by == 'name' ? 'active' : ''); ?>">Name <?php echo ($order_direction == 'ASC' ? '↓' : '↑'); ?></a>
-        <a href="?order_by=distance&order_direction=<?php echo ($order_direction == 'DESC' ? 'ASC' : 'DESC'); ?>" class="sort-button <?php echo ($order_by == 'distance' ? 'active' : ''); ?>">Distance <?php echo ($order_direction == 'ASC' ? '↓' : '↑'); ?></a>
-        <a href="?order_by=gravity&order_direction=<?php echo ($order_direction == 'DESC' ? 'ASC' : 'DESC'); ?>" class="sort-button <?php echo ($order_by == 'gravity' ? 'active' : ''); ?>">Gravity <?php echo ($order_direction == 'ASC' ? '↓' : '↑'); ?></a>
-        <a href="?order_by=diameter&order_direction=<?php echo ($order_direction == 'DESC' ? 'ASC' : 'DESC'); ?>" class="sort-button <?php echo ($order_by == 'diameter' ? 'active' : ''); ?>">Diameter <?php echo ($order_direction == 'ASC' ? '↓' : '↑'); ?></a>
+        <a href="./src/planets.php?order_by=name&order_direction=<?php echo ($order_direction == 'DESC' ? 'ASC' : 'DESC'); ?>" class="sort-button <?php echo ($order_by == 'name' ? 'active' : ''); ?>">Name <?php echo ($order_direction == 'ASC' ? '↓' : '↑'); ?></a>
+        <a href="./src/planets.php?order_by=distance&order_direction=<?php echo ($order_direction == 'DESC' ? 'ASC' : 'DESC'); ?>" class="sort-button <?php echo ($order_by == 'distance' ? 'active' : ''); ?>">Distance <?php echo ($order_direction == 'ASC' ? '↓' : '↑'); ?></a>
+        <a href="./src/planets.php?order_by=gravity&order_direction=<?php echo ($order_direction == 'DESC' ? 'ASC' : 'DESC'); ?>" class="sort-button <?php echo ($order_by == 'gravity' ? 'active' : ''); ?>">Gravity <?php echo ($order_direction == 'ASC' ? '↓' : '↑'); ?></a>
+        <a href="./src/planets.php?order_by=diameter&order_direction=<?php echo ($order_direction == 'DESC' ? 'ASC' : 'DESC'); ?>" class="sort-button <?php echo ($order_by == 'diameter' ? 'active' : ''); ?>">Diameter <?php echo ($order_direction == 'ASC' ? '↓' : '↑'); ?></a>
     </div>
 
     <div class="gallery">
@@ -125,7 +126,7 @@ try {
 
     <div class="pagination">
         <?php if ($page > 1): ?>
-            <a href="?page=<?php echo $page - 1; ?>&order_by=<?php echo $order_by; ?>&order_direction=<?php echo $order_direction; ?>" class="prev">Previous</a>
+            <a href="./src/planets.php?page=<?php echo $page - 1; ?>&order_by=<?php echo $order_by; ?>&order_direction=<?php echo $order_direction; ?>" class="prev">Previous</a>
         <?php endif; ?>
 
         <?php
@@ -134,26 +135,26 @@ try {
         $end = min($total_pages, $page + $range);
 
         if ($start > 1) {
-            echo '<a href="?page=1&order_by=' . $order_by . '&order_direction=' . $order_direction . '">1</a>';
+            echo '<a href="./src/planets.php?page=1&order_by=' . $order_by . '&order_direction=' . $order_direction . '">1</a>';
             if ($start > 2) {
                 echo '<span>...</span>';
             }
         }
 
         for ($i = $start; $i <= $end; $i++) {
-            echo '<a href="?page=' . $i . '&order_by=' . $order_by . '&order_direction=' . $order_direction . '" class="' . ($i == $page ? 'active' : '') . '">' . $i . '</a>';
+            echo '<a href="./src/planets.php?page=' . $i . '&order_by=' . $order_by . '&order_direction=' . $order_direction . '" class="' . ($i == $page ? 'active' : '') . '">' . $i . '</a>';
         }
 
         if ($end < $total_pages) {
             if ($end < $total_pages - 1) {
                 echo '<span>...</span>';
             }
-            echo '<a href="?page=' . $total_pages . '&order_by=' . $order_by . '&order_direction=' . $order_direction . '">' . $total_pages . '</a>';
+            echo '<a href="./src/planets.php?page=' . $total_pages . '&order_by=' . $order_by . '&order_direction=' . $order_direction . '">' . $total_pages . '</a>';
         }
         ?>
 
         <?php if ($page < $total_pages): ?>
-            <a href="?page=<?php echo $page + 1; ?>&order_by=<?php echo $order_by; ?>&order_direction=<?php echo $order_direction; ?>" class="next">Next</a>
+            <a href="./src/planets.php?page=<?php echo $page + 1; ?>&order_by=<?php echo $order_by; ?>&order_direction=<?php echo $order_direction; ?>" class="next">Next</a>
         <?php endif; ?>
     </div>
 
@@ -191,7 +192,7 @@ try {
 <div id="footer-container"></div>
 <script>
     window.onload = function() {
-        fetch('src/footer.php')
+        fetch('../src/footer.php')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('footer-container').innerHTML = data;

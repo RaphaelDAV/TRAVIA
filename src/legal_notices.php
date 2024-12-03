@@ -10,6 +10,7 @@
 </head>
 <body>
 <div id="header-container"></div>
+<script src="../script/nav_bar.js" defer></script>
 <script>
     fetch('header.php')
         .then(response => response.text())

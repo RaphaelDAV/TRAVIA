@@ -2,17 +2,25 @@
 
 class Trip
 {
-    private $tripDetails;
     private $dayName;
+    private $departureTime;
+    private $planetId;
+    private $idShip;
 
-    public function __construct($dayName, $tripDetails) {
+    public function __construct($dayName, $departureTime, $planetId, $idShip) {
         $this->dayName = $dayName;
-        $this->tripDetails = $tripDetails;
+        $this->departureTime = $departureTime;
+        $this->planetId = $planetId;
+        $this->idShip = $idShip;
     }
 
-    public function insertTrip($conn, $planetId) {
-        $stmt = $conn->prepare("INSERT INTO travia_trips (id_planet) VALUES (:id_planet)");
+    public function insertTrip($conn, $departureTime, $planetId, $idShip, $id_day_name) {
+        $stmt = $conn->prepare("INSERT INTO travia_trips (departure_time, id_planet, id_ship, id_day_name) VALUES (:departure_time, :id_planet, :id_ship, :id_day_name)");
+
+        $stmt->bindParam(':departure_time', $departureTime, PDO::PARAM_STR);
         $stmt->bindParam(':id_planet', $planetId, PDO::PARAM_INT);
+        $stmt->bindParam(':id_ship', $idShip, PDO::PARAM_INT);
+        $stmt->bindParam(':id_day_name', $id_day_name, PDO::PARAM_INT);
 
         if ($stmt->execute()) {
             return $conn->lastInsertId();
@@ -20,6 +28,7 @@ class Trip
             return null;
         }
     }
+
 
     public function getOrInsertDayName($conn) {
         $stmt = $conn->prepare("SELECT id_day_name FROM travia_day_name WHERE day_name = :day_name");
@@ -37,27 +46,6 @@ class Trip
                 return $conn->lastInsertId();
             } else {
                 return null;
-            }
-        }
-    }
-
-    public function insertHaveDay($conn, $tripId, $dayNameId) {
-        $stmt = $conn->prepare("INSERT INTO Have_day (id_trips, id_day_name) VALUES (:id_trips, :id_day_name)");
-        $stmt->bindParam(':id_trips', $tripId, PDO::PARAM_INT);
-        $stmt->bindParam(':id_day_name', $dayNameId, PDO::PARAM_INT);
-        $stmt->execute();
-    }
-
-    public function insertDayContent($conn, $dayNameId) {
-        foreach ($this->tripDetails as $trip) {
-            foreach ($trip['departure_time'] as $departureTime) {
-                $shipId = $trip['ship_id'][0];
-
-                $stmt = $conn->prepare("INSERT INTO travia_day_content (departure_time, id_ship, id_day_name) VALUES (:departure_time, :id_ship, :id_day_name)");
-                $stmt->bindParam(':departure_time', $departureTime, PDO::PARAM_STR);
-                $stmt->bindParam(':id_ship', $shipId, PDO::PARAM_INT);
-                $stmt->bindParam(':id_day_name', $dayNameId, PDO::PARAM_INT);
-                $stmt->execute();
             }
         }
     }
