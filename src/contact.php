@@ -10,14 +10,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/star-wars" rel="stylesheet">
     <!--<base href="http://localhost:63342/TRAVIA/">-->
-    <base href="/~raphael.daviot/TRAVIA/">
+    <!--<base href="/~raphael.daviot/TRAVIA/">-->
 </head>
 <body>
 <!-- Include header with JS-->
 <div id="header-container"></div>
 <script src="../script/nav_bar.js" defer></script>
 <script>
-    fetch('src/header.php')
+    fetch('header.php')
         .then(response => response.text())
         .then(data => {
             document.getElementById('header-container').innerHTML = data;

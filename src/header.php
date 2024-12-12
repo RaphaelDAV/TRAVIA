@@ -1,6 +1,6 @@
 <head>
-    <!--<base href="http://localhost:63342/TRAVIA/">-->
-    <base href="/~raphael.daviot/TRAVIA/">
+    <base href="http://localhost:63342/TRAVIA/">
+    <!--<base href="/~raphael.daviot/TRAVIA/">-->
 </head>
 <nav>
     <div class="nav-left">
